@@ -1,0 +1,38 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+
+    <IsPackable>false</IsPackable>
+    <IsTestProject>true</IsTestProject>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="coverlet.collector" Version="6.0.0" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.8.0" />
+    <PackageReference Include="xunit" Version="2.5.3" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.5.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Pagos.API\Pagos.API.csproj" />
+    <ProjectReference Include="..\Pagos.Application\Pagos.Application.csproj" />
+    <ProjectReference Include="..\Pagos.Domain\Pagos.Domain.csproj" />
+    <ProjectReference Include="..\Pagos.Infrastructure\Pagos.Infrastructure.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Using Include="Xunit" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Pagos.API\Controller\" />
+    <Folder Include="Pagos.Application\CommandHandlers\" />
+    <Folder Include="Pagos.Infrastructure\Consumers\" />
+    <Folder Include="Pagos.Infrastructure\Persistences\Repositories\MongoDB\" />
+    <Folder Include="Pagos.Infrastructure\QueryHandlers\" />
+  </ItemGroup>
+
+</Project>
