@@ -7,13 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Aggregates\" />
-    <Folder Include="Entities\" />
+    <PackageReference Include="MassTransit" Version="8.5.5" />
+    <PackageReference Include="MediatR" Version="13.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="Events\EventHandlers\" />
-    <Folder Include="Exceptions\" />
-    <Folder Include="Factories\" />
-    <Folder Include="Interfaces\" />
-    <Folder Include="ValueObjects\" />
   </ItemGroup>
 
 </Project>

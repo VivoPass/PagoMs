@@ -1,0 +1,16 @@
+C:\Users\anale\OneDrive\Documentos\UCAB\DESA 2\Proyecto\VivoPass\PagoMs\Pagos.Application\bin\Debug\net8.0\Pagos.Application.deps.json
+C:\Users\anale\OneDrive\Documentos\UCAB\DESA 2\Proyecto\VivoPass\PagoMs\Pagos.Application\bin\Debug\net8.0\Pagos.Application.dll
+C:\Users\anale\OneDrive\Documentos\UCAB\DESA 2\Proyecto\VivoPass\PagoMs\Pagos.Application\bin\Debug\net8.0\Pagos.Application.pdb
+C:\Users\anale\OneDrive\Documentos\UCAB\DESA 2\Proyecto\VivoPass\PagoMs\Pagos.Application\bin\Debug\net8.0\Pagos.Domain.dll
+C:\Users\anale\OneDrive\Documentos\UCAB\DESA 2\Proyecto\VivoPass\PagoMs\Pagos.Application\bin\Debug\net8.0\Pagos.Domain.pdb
+C:\Users\anale\OneDrive\Documentos\UCAB\DESA 2\Proyecto\VivoPass\PagoMs\Pagos.Application\obj\Debug\net8.0\Pagos.Application.csproj.AssemblyReference.cache
+C:\Users\anale\OneDrive\Documentos\UCAB\DESA 2\Proyecto\VivoPass\PagoMs\Pagos.Application\obj\Debug\net8.0\Pagos.Application.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\anale\OneDrive\Documentos\UCAB\DESA 2\Proyecto\VivoPass\PagoMs\Pagos.Application\obj\Debug\net8.0\Pagos.Application.AssemblyInfoInputs.cache
+C:\Users\anale\OneDrive\Documentos\UCAB\DESA 2\Proyecto\VivoPass\PagoMs\Pagos.Application\obj\Debug\net8.0\Pagos.Application.AssemblyInfo.cs
+C:\Users\anale\OneDrive\Documentos\UCAB\DESA 2\Proyecto\VivoPass\PagoMs\Pagos.Application\obj\Debug\net8.0\Pagos.Application.csproj.CoreCompileInputs.cache
+C:\Users\anale\OneDrive\Documentos\UCAB\DESA 2\Proyecto\VivoPass\PagoMs\Pagos.Application\obj\Debug\net8.0\Pagos.Application.sourcelink.json
+C:\Users\anale\OneDrive\Documentos\UCAB\DESA 2\Proyecto\VivoPass\PagoMs\Pagos.Application\obj\Debug\net8.0\Pagos.Ap.B9B56D55.Up2Date
+C:\Users\anale\OneDrive\Documentos\UCAB\DESA 2\Proyecto\VivoPass\PagoMs\Pagos.Application\obj\Debug\net8.0\Pagos.Application.dll
+C:\Users\anale\OneDrive\Documentos\UCAB\DESA 2\Proyecto\VivoPass\PagoMs\Pagos.Application\obj\Debug\net8.0\refint\Pagos.Application.dll
+C:\Users\anale\OneDrive\Documentos\UCAB\DESA 2\Proyecto\VivoPass\PagoMs\Pagos.Application\obj\Debug\net8.0\Pagos.Application.pdb
+C:\Users\anale\OneDrive\Documentos\UCAB\DESA 2\Proyecto\VivoPass\PagoMs\Pagos.Application\obj\Debug\net8.0\ref\Pagos.Application.dll

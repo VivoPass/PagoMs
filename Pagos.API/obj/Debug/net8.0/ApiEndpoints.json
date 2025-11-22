@@ -1,0 +1,97 @@
+[
+  {
+    "ContainingType": "Pagos.API.Controllers.PagosController",
+    "Method": "ActualizarMPagoPredeterminado",
+    "RelativePath": "api/Pagos/actualizarMPagoPredeterminado",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "idMPago",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "idUsuario",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Pagos.API.Controllers.PagosController",
+    "Method": "AgregarMPago",
+    "RelativePath": "api/Pagos/agregarMPago",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "mpago",
+        "Type": "Pagos.Application.DTOs.AgregarMPagoStripeDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Pagos.API.Controllers.PagosController",
+    "Method": "EliminarMPago",
+    "RelativePath": "api/Pagos/eliminarMPago",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "idMPago",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Pagos.API.Controllers.PagosController",
+    "Method": "GetMPagoPorId",
+    "RelativePath": "api/Pagos/getMPagoPorIdMPago",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "idMPago",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Pagos.API.Controllers.PagosController",
+    "Method": "GetMPagoPorIdUsuario",
+    "RelativePath": "api/Pagos/getMPagoPorIdUsuario",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "idUsuario",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Pagos.API.Controllers.PagosController",
+    "Method": "GetTodosMPago",
+    "RelativePath": "api/Pagos/getTodosMPago",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  }
+]

@@ -1,0 +1,176 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Pagos API",
+    "description": "API del Microservicio de Pagos que gestiona la información de pagos y métodos de pago.",
+    "version": "v1"
+  },
+  "paths": {
+    "/api/Pagos/agregarMPago": {
+      "post": {
+        "tags": [
+          "Pagos"
+        ],
+        "summary": "Agrega un nuevo método de pago usando Stripe.",
+        "requestBody": {
+          "description": "DTO !:AgregarMPagoStripeDto con la información requerida por Stripe\r\npara asociar un nuevo método de pago al postor.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AgregarMPagoStripeDTO"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AgregarMPagoStripeDTO"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/AgregarMPagoStripeDTO"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Pagos/eliminarMPago": {
+      "delete": {
+        "tags": [
+          "Pagos"
+        ],
+        "summary": "Elimina un medio de pago (MPago) identificado por su ID.",
+        "parameters": [
+          {
+            "name": "idMPago",
+            "in": "query",
+            "description": "Identificador único del medio de pago que se desea eliminar.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Pagos/getMPagoPorIdMPago": {
+      "get": {
+        "tags": [
+          "Pagos"
+        ],
+        "summary": "Recupera un medio de pago (MPago) por su identificador único.",
+        "parameters": [
+          {
+            "name": "idMPago",
+            "in": "query",
+            "description": "Identificador del medio de pago a consultar.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Pagos/getMPagoPorIdUsuario": {
+      "get": {
+        "tags": [
+          "Pagos"
+        ],
+        "summary": "Recupera todos los medios de pago (MPago) asociados a un postor específico.",
+        "parameters": [
+          {
+            "name": "idUsuario",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Pagos/getTodosMPago": {
+      "get": {
+        "tags": [
+          "Pagos"
+        ],
+        "summary": "Recupera todos los medios de pago (MPago) registrados.",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Pagos/actualizarMPagoPredeterminado": {
+      "put": {
+        "tags": [
+          "Pagos"
+        ],
+        "summary": "Marca un medio de pago (MPago) como predeterminado para un postor específico.",
+        "parameters": [
+          {
+            "name": "idMPago",
+            "in": "query",
+            "description": "Identificador del medio de pago que se desea establecer como predeterminado.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "idUsuario",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "AgregarMPagoStripeDTO": {
+        "type": "object",
+        "properties": {
+          "idUsuario": {
+            "type": "string",
+            "nullable": true
+          },
+          "idMPagoStripe": {
+            "type": "string",
+            "nullable": true
+          },
+          "correoUsuario": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  }
+}

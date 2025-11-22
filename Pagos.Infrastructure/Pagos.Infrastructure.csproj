@@ -12,12 +12,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Configurations\" />
     <Folder Include="Consumers\" />
     <Folder Include="Interfaces\" />
-    <Folder Include="Services\" />
-    <Folder Include="Persistences\Repositories\MongoDB\" />
-    <Folder Include="Queries\QueryHandlers\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MongoDB.Driver" Version="3.5.0" />
+    <PackageReference Include="Stripe.net" Version="49.2.0" />
   </ItemGroup>
 
 </Project>
