@@ -11,10 +11,14 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Commands\CommandHandlers\" />
-    <Folder Include="DTOs\" />
     <Folder Include="Events\EventHandlers\" />
-    <Folder Include="Validations\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FluentValidation" Version="12.1.0" />
+    <PackageReference Include="MassTransit" Version="8.5.5" />
+    <PackageReference Include="MediatR" Version="13.1.0" />
+    <PackageReference Include="Stripe.net" Version="49.2.0" />
   </ItemGroup>
 
 </Project>

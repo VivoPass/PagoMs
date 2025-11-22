@@ -1,0 +1,13 @@
+C:\Users\anale\OneDrive\Documentos\UCAB\DESA 2\Proyecto\VivoPass\PagoMs\Pagos.Domain\bin\Debug\net8.0\Pagos.Domain.deps.json
+C:\Users\anale\OneDrive\Documentos\UCAB\DESA 2\Proyecto\VivoPass\PagoMs\Pagos.Domain\bin\Debug\net8.0\Pagos.Domain.dll
+C:\Users\anale\OneDrive\Documentos\UCAB\DESA 2\Proyecto\VivoPass\PagoMs\Pagos.Domain\bin\Debug\net8.0\Pagos.Domain.pdb
+C:\Users\anale\OneDrive\Documentos\UCAB\DESA 2\Proyecto\VivoPass\PagoMs\Pagos.Domain\obj\Debug\net8.0\Pagos.Domain.csproj.AssemblyReference.cache
+C:\Users\anale\OneDrive\Documentos\UCAB\DESA 2\Proyecto\VivoPass\PagoMs\Pagos.Domain\obj\Debug\net8.0\Pagos.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\anale\OneDrive\Documentos\UCAB\DESA 2\Proyecto\VivoPass\PagoMs\Pagos.Domain\obj\Debug\net8.0\Pagos.Domain.AssemblyInfoInputs.cache
+C:\Users\anale\OneDrive\Documentos\UCAB\DESA 2\Proyecto\VivoPass\PagoMs\Pagos.Domain\obj\Debug\net8.0\Pagos.Domain.AssemblyInfo.cs
+C:\Users\anale\OneDrive\Documentos\UCAB\DESA 2\Proyecto\VivoPass\PagoMs\Pagos.Domain\obj\Debug\net8.0\Pagos.Domain.csproj.CoreCompileInputs.cache
+C:\Users\anale\OneDrive\Documentos\UCAB\DESA 2\Proyecto\VivoPass\PagoMs\Pagos.Domain\obj\Debug\net8.0\Pagos.Domain.sourcelink.json
+C:\Users\anale\OneDrive\Documentos\UCAB\DESA 2\Proyecto\VivoPass\PagoMs\Pagos.Domain\obj\Debug\net8.0\Pagos.Domain.dll
+C:\Users\anale\OneDrive\Documentos\UCAB\DESA 2\Proyecto\VivoPass\PagoMs\Pagos.Domain\obj\Debug\net8.0\refint\Pagos.Domain.dll
+C:\Users\anale\OneDrive\Documentos\UCAB\DESA 2\Proyecto\VivoPass\PagoMs\Pagos.Domain\obj\Debug\net8.0\Pagos.Domain.pdb
+C:\Users\anale\OneDrive\Documentos\UCAB\DESA 2\Proyecto\VivoPass\PagoMs\Pagos.Domain\obj\Debug\net8.0\ref\Pagos.Domain.dll
