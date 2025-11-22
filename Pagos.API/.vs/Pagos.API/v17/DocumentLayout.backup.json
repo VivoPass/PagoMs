@@ -1,20 +1,7 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Users\\anale\\OneDrive\\Documentos\\UCAB\\DESA 2\\Proyecto\\VivoPass\\PagoMs\\Pagos.API\\",
-  "Documents": [
-    {
-      "AbsoluteMoniker": "D:0:0:{5B581B14-73B6-40B0-83F9-79CA6901B005}|Pagos.API.csproj|c:\\users\\anale\\onedrive\\documentos\\ucab\\desa 2\\proyecto\\vivopass\\pagoms\\pagos.api\\.env||{8B382828-6202-11D1-8870-0000F87579D2}",
-      "RelativeMoniker": "D:0:0:{5B581B14-73B6-40B0-83F9-79CA6901B005}|Pagos.API.csproj|solutionrelative:.env||{8B382828-6202-11D1-8870-0000F87579D2}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{5B581B14-73B6-40B0-83F9-79CA6901B005}|Pagos.API.csproj|c:\\users\\anale\\onedrive\\documentos\\ucab\\desa 2\\proyecto\\vivopass\\pagoms\\pagos.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5B581B14-73B6-40B0-83F9-79CA6901B005}|Pagos.API.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{5B581B14-73B6-40B0-83F9-79CA6901B005}|Pagos.API.csproj|c:\\users\\anale\\onedrive\\documentos\\ucab\\desa 2\\proyecto\\vivopass\\pagoms\\pagos.api\\controllers\\pagoscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5B581B14-73B6-40B0-83F9-79CA6901B005}|Pagos.API.csproj|solutionrelative:controllers\\pagoscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    }
-  ],
+  "Documents": [],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -22,7 +9,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": -1,
           "Children": [
             {
               "$type": "Bookmark",
@@ -31,45 +18,6 @@
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": ".env",
-              "DocumentMoniker": "C:\\Users\\anale\\OneDrive\\Documentos\\UCAB\\DESA 2\\Proyecto\\VivoPass\\PagoMs\\Pagos.API\\.env",
-              "RelativeDocumentMoniker": ".env",
-              "ToolTip": "C:\\Users\\anale\\OneDrive\\Documentos\\UCAB\\DESA 2\\Proyecto\\VivoPass\\PagoMs\\Pagos.API\\.env",
-              "RelativeToolTip": ".env",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAAWAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
-              "WhenOpened": "2025-11-17T02:55:45.906Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\anale\\OneDrive\\Documentos\\UCAB\\DESA 2\\Proyecto\\VivoPass\\PagoMs\\Pagos.API\\Program.cs",
-              "RelativeDocumentMoniker": "Program.cs",
-              "ToolTip": "C:\\Users\\anale\\OneDrive\\Documentos\\UCAB\\DESA 2\\Proyecto\\VivoPass\\PagoMs\\Pagos.API\\Program.cs",
-              "RelativeToolTip": "Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-17T02:55:13.619Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "PagosController.cs",
-              "DocumentMoniker": "C:\\Users\\anale\\OneDrive\\Documentos\\UCAB\\DESA 2\\Proyecto\\VivoPass\\PagoMs\\Pagos.API\\Controllers\\PagosController.cs",
-              "RelativeDocumentMoniker": "Controllers\\PagosController.cs",
-              "ToolTip": "C:\\Users\\anale\\OneDrive\\Documentos\\UCAB\\DESA 2\\Proyecto\\VivoPass\\PagoMs\\Pagos.API\\Controllers\\PagosController.cs",
-              "RelativeToolTip": "Controllers\\PagosController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAgAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-17T02:54:05.274Z",
-              "EditorCaption": ""
             }
           ]
         }

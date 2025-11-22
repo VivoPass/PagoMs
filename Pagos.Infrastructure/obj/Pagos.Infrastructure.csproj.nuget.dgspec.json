@@ -53,6 +53,24 @@
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
+          "dependencies": {
+            "FluentValidation": {
+              "target": "Package",
+              "version": "[12.1.0, )"
+            },
+            "MassTransit": {
+              "target": "Package",
+              "version": "[8.5.5, )"
+            },
+            "MediatR": {
+              "target": "Package",
+              "version": "[13.1.0, )"
+            },
+            "Stripe.net": {
+              "target": "Package",
+              "version": "[49.2.0, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
@@ -118,6 +136,16 @@
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
+          "dependencies": {
+            "MassTransit": {
+              "target": "Package",
+              "version": "[8.5.5, )"
+            },
+            "MediatR": {
+              "target": "Package",
+              "version": "[13.1.0, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
@@ -190,6 +218,16 @@
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
+          "dependencies": {
+            "MongoDB.Driver": {
+              "target": "Package",
+              "version": "[3.5.0, )"
+            },
+            "Stripe.net": {
+              "target": "Package",
+              "version": "[49.2.0, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
