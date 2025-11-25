@@ -13,13 +13,16 @@ namespace Pagos.Application.Commands.CommandHandlers
         private readonly IStripeService StripeService;
         private readonly ITarjetaCreditoFactory TarjetaCreditoFactory;
         private readonly ILog Log;
+        private readonly IPaymentMethodService PaymentMethodService;
 
-        public AgregarMPagoCommandHandler(IMPagoRepository mPagoWriteRepository, IStripeService stripeService, ITarjetaCreditoFactory tarjetaCreditoFactory, ILog log)
+        public AgregarMPagoCommandHandler(IMPagoRepository mPagoWriteRepository, IStripeService stripeService, ITarjetaCreditoFactory tarjetaCreditoFactory,
+            ILog log, IPaymentMethodService paymentMethodService)
         {
             MPagoWriteRepository = mPagoWriteRepository ?? throw new MPagoRepositoryNullException();
             StripeService = stripeService ?? throw new StripeServiceNullException();
             TarjetaCreditoFactory = tarjetaCreditoFactory ?? throw new TarjetaCreditoFactoryNullException();
             Log = log ?? throw new LogNullException();
+            PaymentMethodService = paymentMethodService;
         }
 
         public async Task<string> Handle(AgregarMPagoCommand request, CancellationToken cancellationToken)
@@ -40,8 +43,7 @@ namespace Pagos.Application.Commands.CommandHandlers
                 Log.Info($"Paso 1 OK: Cliente Stripe ID {customer.Id} asociado/creado.");
 
                 // Obtener detalles del método de pago desde Stripe
-                var paymentMethodService = new PaymentMethodService();
-                var paymentMethod = await paymentMethodService.GetAsync(mPagoStripeDto.IdMPagoStripe);
+                var paymentMethod = await PaymentMethodService.GetAsync(mPagoStripeDto.IdMPagoStripe);
                 Log.Debug($"Paso 2 OK: Detalles del MPago obtenidos de Stripe. Últimos 4 dígitos:" +
                           $" {paymentMethod.Card.Last4}, Marca: {paymentMethod.Card.Brand}.");
 
