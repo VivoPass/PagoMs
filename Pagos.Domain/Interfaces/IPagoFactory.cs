@@ -6,9 +6,9 @@ namespace Pagos.Domain.Interfaces
     public interface IPagoFactory
     {
         Pago Crear
-        (string idMPago, string idUsuario, DateTime fechaPago, decimal monto, string idReserva,
+        (string idMPago, string idUsuario, DateTime fechaPago, decimal monto, string idReserva, string idEvento,
             string idExternalPago);
         Pago Load(VOIdPago idPago, VOIdMPago idMPago, VOIdUsuario idUsuario, VOFechaPago fechaPago, VOMonto monto, VOIdReserva idReserva, 
-            VOIdExternalPago? idExternalPago);
+            VOIdEvento idEvento, VOIdExternalPago? idExternalPago);
     }
 }

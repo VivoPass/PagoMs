@@ -15,6 +15,22 @@
           }
         }
       },
+      "log4net/3.2.0": {
+        "type": "package",
+        "dependencies": {
+          "System.Configuration.ConfigurationManager": "4.5.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/log4net.dll": {
+            "related": ".pdb;.xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.0/log4net.dll": {
+            "related": ".pdb;.xml"
+          }
+        }
+      },
       "MassTransit/8.5.5": {
         "type": "package",
         "dependencies": {
@@ -466,6 +482,25 @@
         "fluentvalidation.nuspec",
         "lib/net8.0/FluentValidation.dll",
         "lib/net8.0/FluentValidation.xml"
+      ]
+    },
+    "log4net/3.2.0": {
+      "sha512": "f/iwZ8ToR8FFK0xE0ym4IUSPakuvF/PnXomgMXJs7jxqOGqFn984xtA5IQXBhWXBu61a3yU0XiJCZ3ltENtPRg==",
+      "type": "package",
+      "path": "log4net/3.2.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "README.md",
+        "lib/net462/log4net.dll",
+        "lib/net462/log4net.pdb",
+        "lib/net462/log4net.xml",
+        "lib/netstandard2.0/log4net.dll",
+        "lib/netstandard2.0/log4net.pdb",
+        "lib/netstandard2.0/log4net.xml",
+        "log4net.3.2.0.nupkg.sha512",
+        "log4net.nuspec",
+        "package-icon.png"
       ]
     },
     "MassTransit/8.5.5": {
@@ -1185,7 +1220,8 @@
       "MassTransit >= 8.5.5",
       "MediatR >= 13.1.0",
       "Pagos.Domain >= 1.0.0",
-      "Stripe.net >= 49.2.0"
+      "Stripe.net >= 49.2.0",
+      "log4net >= 3.2.0"
     ]
   },
   "packageFolders": {
@@ -1257,6 +1293,10 @@
           "Stripe.net": {
             "target": "Package",
             "version": "[49.2.0, )"
+          },
+          "log4net": {
+            "target": "Package",
+            "version": "[3.2.0, )"
           }
         },
         "imports": [

@@ -8,7 +8,7 @@ namespace Pagos.Domain.Factories
     public class PagoFactory : IPagoFactory
     {
         public Pago Crear
-        (string idMPago, string idUsuario, DateTime fechaPago, decimal monto, string idReserva,
+        (string idMPago, string idUsuario, DateTime fechaPago, decimal monto, string idReserva, string idEvento,
             string idExternalPago)
         {
             VOIdPago IdPago = new VOIdPago(Guid.NewGuid().ToString());
@@ -17,17 +17,18 @@ namespace Pagos.Domain.Factories
             VOFechaPago FechaPago = new VOFechaPago(fechaPago);
             VOMonto Monto = new VOMonto(monto);
             VOIdReserva IdReserva = new VOIdReserva(idReserva);
+            VOIdEvento IdEvento = new VOIdEvento(idEvento);
             VOIdExternalPago? IdExternalPago = new VOIdExternalPago(idExternalPago);
 
-            var NuevoMPago = new Pago(IdPago, IdMPago, IdUsuario, FechaPago, Monto, IdReserva, IdExternalPago);
+            var NuevoMPago = new Pago(IdPago, IdMPago, IdUsuario, FechaPago, Monto, IdReserva, IdEvento, IdExternalPago);
 
             return NuevoMPago;
         }
 
         public Pago Load(VOIdPago idPago, VOIdMPago idMPago, VOIdUsuario idUsuario, VOFechaPago fechaPago, VOMonto monto, VOIdReserva idReserva,
-            VOIdExternalPago? idExternalPago)
+            VOIdEvento idEvento, VOIdExternalPago? idExternalPago)
         {
-            return new Pago(idPago, idMPago, idUsuario, fechaPago, monto, idReserva, idExternalPago);
+            return new Pago(idPago, idMPago, idUsuario, fechaPago, monto, idReserva, idEvento, idExternalPago);
         }
     }
 }

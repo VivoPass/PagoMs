@@ -1,11 +1,7 @@
-﻿using MediatR;
+﻿using log4net;
+using MediatR;
 using Pagos.Application.DTOs;
 using Pagos.Domain.Exceptions;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Pagos.Domain.Interfaces;
 
 namespace Pagos.Infrastructure.Queries.QueryHandlers
@@ -13,23 +9,29 @@ namespace Pagos.Infrastructure.Queries.QueryHandlers
     public class GetMPagoPorIdQueryHandler : IRequestHandler<GetMPagoPorIdQuery, MPagoDTO>
     {
         private readonly IMPagoRepository MPagoReadRepository;
+        private readonly ILog Log;
 
-        public GetMPagoPorIdQueryHandler(IMPagoRepository mPagoReadRepository)
+        public GetMPagoPorIdQueryHandler(IMPagoRepository mPagoReadRepository, ILog log)
         {
-            MPagoReadRepository = mPagoReadRepository ?? throw new MPagoReadRepositoryNullException();
+            MPagoReadRepository = mPagoReadRepository ?? throw new MPagoRepositoryNullException();
+            Log = log ?? throw new LogNullException();
         }
 
         public async Task<MPagoDTO> Handle(GetMPagoPorIdQuery idMPago, CancellationToken cancellationToken)
         {
+            var mpagoId = idMPago.IdMPago;
+            Log.Debug($"[MPAGO ID: {mpagoId}] Iniciando la consulta para obtener método de pago por ID.");
             try
             {
-                var mpago = await MPagoReadRepository.ObtenerMPagoPorId(idMPago.IdMPago);
+                var mpago = await MPagoReadRepository.ObtenerMPagoPorId(mpagoId);
 
                 if (mpago == null)
                 {
+                    Log.Warn($"[MPAGO ID: {mpagoId}] El método de pago no fue encontrado en el repositorio. Retornando DTO vacío.");
                     return new MPagoDTO();
                 }
 
+                Log.Info($"[MPAGO ID: {mpagoId}] Método de pago encontrado. Procediendo al mapeo.");
                 var mpagoPorId = new MPagoDTO
                 {
                     IdMPago = mpago.IdMPago.Valor,
@@ -44,10 +46,12 @@ namespace Pagos.Infrastructure.Queries.QueryHandlers
                     Predeterminado = mpago.Predeterminado.Valor
                 };
 
+                Log.Debug($"[MPAGO ID: {mpagoId}] Mapeo a DTO completado y retornado exitosamente.");
                 return mpagoPorId;
             }
             catch (Exception ex)
             {
+                Log.Error($"[MPAGO ID: {mpagoId}] Error inesperado al obtener el método de pago. Lanzando excepción de Handler.", ex);
                 throw new GetMPagoPorIdQueryHandlerException(ex);
             }
         }

@@ -38,6 +38,27 @@
   },
   {
     "ContainingType": "Pagos.API.Controllers.PagosController",
+    "Method": "AgregarPago",
+    "RelativePath": "api/Pagos/AgregarPago",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "pago",
+        "Type": "Pagos.Application.DTOs.AgregarPagoDTO",
+        "IsRequired": true
+      },
+      {
+        "Name": "idMPago",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Pagos.API.Controllers.PagosController",
     "Method": "EliminarMPago",
     "RelativePath": "api/Pagos/eliminarMPago",
     "HttpMethod": "DELETE",
@@ -72,6 +93,54 @@
     "ContainingType": "Pagos.API.Controllers.PagosController",
     "Method": "GetMPagoPorIdUsuario",
     "RelativePath": "api/Pagos/getMPagoPorIdUsuario",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "idUsuario",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Pagos.API.Controllers.PagosController",
+    "Method": "GetPagoPorId",
+    "RelativePath": "api/Pagos/GetPagoPorId",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "idPago",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Pagos.API.Controllers.PagosController",
+    "Method": "GetPagoPorIdEvento",
+    "RelativePath": "api/Pagos/GetPagoPorIdEvento",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "idEvento",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Pagos.API.Controllers.PagosController",
+    "Method": "GetPagosPorIdUsuario",
+    "RelativePath": "api/Pagos/GetPagosPorIdUsuario",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,

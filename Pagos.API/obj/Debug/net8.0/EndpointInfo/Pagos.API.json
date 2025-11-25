@@ -13,7 +13,7 @@
         ],
         "summary": "Agrega un nuevo método de pago usando Stripe.",
         "requestBody": {
-          "description": "DTO !:AgregarMPagoStripeDto con la información requerida por Stripe\r\npara asociar un nuevo método de pago al postor.",
+          "description": "DTO Pagos.Application.DTOs.AgregarMPagoStripeDTO con la información requerida por Stripe\r\npara asociar un nuevo método de pago al usuario.",
           "content": {
             "application/json": {
               "schema": {
@@ -90,11 +90,12 @@
         "tags": [
           "Pagos"
         ],
-        "summary": "Recupera todos los medios de pago (MPago) asociados a un postor específico.",
+        "summary": "Recupera todos los medios de pago (MPago) asociados a un usuario específico.",
         "parameters": [
           {
             "name": "idUsuario",
             "in": "query",
+            "description": "Identificador del usuario cuyos MPagos se quieren listar.",
             "schema": {
               "type": "string"
             }
@@ -112,7 +113,7 @@
         "tags": [
           "Pagos"
         ],
-        "summary": "Recupera todos los medios de pago (MPago) registrados.",
+        "summary": "Recupera todos los medios de pago (MPago) registrados. (Ruta administrativa/debugging).",
         "responses": {
           "200": {
             "description": "OK"
@@ -125,7 +126,7 @@
         "tags": [
           "Pagos"
         ],
-        "summary": "Marca un medio de pago (MPago) como predeterminado para un postor específico.",
+        "summary": "Marca un medio de pago (MPago) como predeterminado para un usuario específico.",
         "parameters": [
           {
             "name": "idMPago",
@@ -138,6 +139,119 @@
           {
             "name": "idUsuario",
             "in": "query",
+            "description": "Identificador del usuario al que pertenece el medio de pago.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Pagos/AgregarPago": {
+      "post": {
+        "tags": [
+          "Pagos"
+        ],
+        "summary": "Procesa una solicitud de pago y confirma la reserva asociada en el Microservicio de Reservas.",
+        "parameters": [
+          {
+            "name": "idMPago",
+            "in": "query",
+            "description": "ID del medio de pago a utilizar.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "DTO con los detalles del pago (Monto, ID Reserva, etc.).",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AgregarPagoDTO"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AgregarPagoDTO"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/AgregarPagoDTO"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Pagos/GetPagoPorId": {
+      "get": {
+        "tags": [
+          "Pagos"
+        ],
+        "summary": "Obtiene los detalles de un pago específico por su ID.",
+        "parameters": [
+          {
+            "name": "idPago",
+            "in": "query",
+            "description": "Identificador del pago a consultar.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Pagos/GetPagoPorIdEvento": {
+      "get": {
+        "tags": [
+          "Pagos"
+        ],
+        "summary": "Obtiene todos los pagos asociados a un evento específico.",
+        "parameters": [
+          {
+            "name": "idEvento",
+            "in": "query",
+            "description": "Identificador del evento a consultar.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Pagos/GetPagosPorIdUsuario": {
+      "get": {
+        "tags": [
+          "Pagos"
+        ],
+        "summary": "Obtiene todos los pagos realizados por un usuario específico.",
+        "parameters": [
+          {
+            "name": "idUsuario",
+            "in": "query",
+            "description": "Identificador del usuario cuyos pagos se quieren listar.",
             "schema": {
               "type": "string"
             }
@@ -167,6 +281,36 @@
           "correoUsuario": {
             "type": "string",
             "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "AgregarPagoDTO": {
+        "type": "object",
+        "properties": {
+          "idMPago": {
+            "type": "string",
+            "nullable": true
+          },
+          "idUsuario": {
+            "type": "string",
+            "nullable": true
+          },
+          "idReserva": {
+            "type": "string",
+            "nullable": true
+          },
+          "idEvento": {
+            "type": "string",
+            "nullable": true
+          },
+          "fechaPago": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "monto": {
+            "type": "number",
+            "format": "double"
           }
         },
         "additionalProperties": false
