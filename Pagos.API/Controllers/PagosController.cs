@@ -1,11 +1,13 @@
 using log4net;
+using MassTransit;
 using MediatR;
-using RestSharp;
 using Microsoft.AspNetCore.Mvc;
 using Pagos.Application.Commands;
 using Pagos.Application.DTOs;
 using Pagos.Domain.Exceptions;
 using Pagos.Infrastructure.Queries;
+using RestSharp;
+using System.Net;
 
 namespace Pagos.API.Controllers
 {
@@ -25,7 +27,7 @@ namespace Pagos.API.Controllers
             RestClient = restClient ?? throw new RestClientNullException();
             Log = log ?? throw new LogNullException();
         }
-
+        
         #region AgregarMPago([FromBody] AgregarMPagoStripeDto mpago)
         /// <summary>
         /// Agrega un nuevo método de pago usando Stripe.
@@ -40,6 +42,9 @@ namespace Pagos.API.Controllers
         /// <see cref="ObjectResult"/> (500) si ocurre un error interno.
         /// </returns>
         [HttpPost("agregarMPago")]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(string))] //201 OK
+        [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(string))]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(string))] // Error de comunicación externa o genérico
         public async Task<IActionResult> AgregarMPago([FromBody] AgregarMPagoStripeDTO mpago)
         {
             Log.Debug($"Inicio de AgregarMPago para el usuario: {mpago.IdUsuario}");
@@ -102,6 +107,9 @@ namespace Pagos.API.Controllers
         /// <see cref="ObjectResult"/> (500) si ocurre un error interno en el servidor.
         /// </returns>
         [HttpDelete("eliminarMPago")]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(string))]
+        [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(string))]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(string))] // Error de comunicación externa o genérico
         public async Task<IActionResult> EliminarMPago([FromQuery] string idMPago)
         {
             Log.Debug($"Inicio de Eliminación de MPago: {idMPago}");
@@ -158,6 +166,9 @@ namespace Pagos.API.Controllers
         /// <see cref="ObjectResult"/> (500) si ocurre un error interno en el servidor.
         /// </returns>
         [HttpGet("getMPagoPorIdMPago")]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(object))] //retorna un MPagoDTO
+        [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(string))]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(string))]
         public async Task<IActionResult> GetMPagoPorId([FromQuery] string idMPago)
         {
             Log.Debug($"Inicio de consulta de MPago por ID: {idMPago}");
@@ -197,6 +208,9 @@ namespace Pagos.API.Controllers
         /// <see cref="ObjectResult"/> (500) si ocurre un error interno en el servidor.
         /// </returns>
         [HttpGet("getMPagoPorIdUsuario")]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(List<object>))] //retorna List<MPagoDTO>
+        [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(string))]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(string))]
         public async Task<IActionResult> GetMPagoPorIdUsuario([FromQuery] string idUsuario)
         {
             Log.Debug($"Inicio de consulta de MPagos por Usuario ID: {idUsuario}");
@@ -235,6 +249,9 @@ namespace Pagos.API.Controllers
         /// <see cref="ObjectResult"/> (500) si ocurre un error interno en el servidor.
         /// </returns>
         [HttpGet("getTodosMPago")]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(List<object>))] //retorna List<MPagoDTO>
+        [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(string))]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(Exception))]
         public async Task<IActionResult> GetTodosMPago()
         {
             Log.Debug("Inicio de consulta de TODOS los MPagos.");
@@ -275,6 +292,9 @@ namespace Pagos.API.Controllers
         /// <see cref="ObjectResult"/> (500) si ocurre un error interno en el servidor.
         /// </returns>
         [HttpPut("actualizarMPagoPredeterminado")]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(string))]
+        [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(string))]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(string))] // Error de comunicación externa o genérico
         public async Task<IActionResult> ActualizarMPagoPredeterminado([FromQuery] string idMPago, [FromQuery] string idUsuario)
         {
             Log.Debug($"Inicio de ActualizarMPagoPredeterminado. MPago: {idMPago}, Usuario: {idUsuario}");
@@ -334,6 +354,9 @@ namespace Pagos.API.Controllers
         /// <see cref="ObjectResult"/> (500) si el pago es exitoso pero falla la confirmación de la reserva o si ocurre un error interno.
         /// </returns>
         [HttpPost("AgregarPago")]
+        [ProducesResponseType(StatusCodes.Status201Created, Type = typeof(string))]
+        [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(string))]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(string))]
         public async Task<IActionResult> AgregarPago([FromBody] AgregarPagoDTO pago, [FromQuery] string idMPago)
         {
             Log.Debug($"Inicio de AgregarPago. ID Reserva: {pago.IdReserva}, ID MPago: {idMPago}");
@@ -404,6 +427,9 @@ namespace Pagos.API.Controllers
         /// <see cref="ObjectResult"/> (500) si ocurre un error interno en el servidor.
         /// </returns>
         [HttpGet("GetPagoPorId")]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(object))] //retorna un PagoDTO
+        [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(string))]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(string))]
         public async Task<IActionResult> GetPagoPorId([FromQuery] string idPago)
         {
             Log.Debug($"Inicio de consulta de Pago por ID: {idPago}");
@@ -439,6 +465,9 @@ namespace Pagos.API.Controllers
         /// <see cref="ObjectResult"/> (500) si ocurre un error interno en el servidor.
         /// </returns>
         [HttpGet("GetPagoPorIdEvento")]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(List<object>))] //retorna List<PagoDTO>
+        [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(string))]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(string))]
         public async Task<IActionResult> GetPagoPorIdEvento([FromQuery] string idEvento)
         {
             Log.Debug($"Inicio de consulta de Pagos por ID de Evento: {idEvento}");
@@ -473,6 +502,9 @@ namespace Pagos.API.Controllers
         /// <see cref="ObjectResult"/> (500) si ocurre un error interno en el servidor.
         /// </returns>
         [HttpGet("GetPagosPorIdUsuario")]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(List<object>))] //retorna List<PagoDTO>
+        [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(string))]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(string))]
         public async Task<IActionResult> GetPagosPorIdUsuario([FromQuery] string idUsuario)
         {
             Log.Debug($"Inicio de consulta de Pagos por ID de Usuario: {idUsuario}");
