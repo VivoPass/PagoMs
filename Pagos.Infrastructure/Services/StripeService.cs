@@ -128,11 +128,11 @@ namespace Pagos.Infrastructure.Services
         public async Task EliminarMPago(string customerId, string paymentMethodId)
         {
             Log.Debug($"Iniciando desvinculación (detach) del PaymentMethod {paymentMethodId} para el Customer {customerId}.");
+            
             try
             {
-                var paymentMethodService = new PaymentMethodService();
-
                 Log.Info("Llamando a Stripe para desvincular el método de pago (DetachAsync).");
+                var paymentMethodService = new Stripe.PaymentMethodService();
                 await paymentMethodService.DetachAsync(paymentMethodId);
 
                 Log.Info($"PaymentMethod {paymentMethodId} desvinculado exitosamente del Customer {customerId}.");

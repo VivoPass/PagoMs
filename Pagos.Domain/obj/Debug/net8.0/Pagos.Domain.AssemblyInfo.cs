@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Pagos.Domain")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+fdebac7e17021de904b350325dfaf3d92fb552bf")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+874fd96dbfb11ec380fd47f14a903a556b92fd11")]
 [assembly: System.Reflection.AssemblyProductAttribute("Pagos.Domain")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Pagos.Domain")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

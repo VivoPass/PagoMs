@@ -59,6 +59,7 @@ builder.Services.AddScoped<IMPagoRepository, MPagoRepository>();
 builder.Services.AddScoped<IPagoRepository, PagoRepository>();
 builder.Services.AddScoped<IAuditoriaRepository, AuditoriaRepository>();
 builder.Services.AddScoped<IStripeService, StripeService>();
+builder.Services.AddScoped<IPaymentMethodService, PaymentMethodService>();
 builder.Services.AddScoped<ITarjetaCreditoFactory, TarjetaCreditoFactory>();
 builder.Services.AddScoped<IPagoFactory, PagoFactory>();
 
