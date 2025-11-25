@@ -1,12 +1,7 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Users\\anale\\OneDrive\\Documentos\\UCAB\\DESA 2\\Proyecto\\VivoPass\\PagoMs\\Pagos.API\\",
-  "Documents": [
-    {
-      "AbsoluteMoniker": "D:0:0:{5B581B14-73B6-40B0-83F9-79CA6901B005}|Pagos.API.csproj|c:\\users\\anale\\onedrive\\documentos\\ucab\\desa 2\\proyecto\\vivopass\\pagoms\\pagos.api\\controllers\\pagoscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5B581B14-73B6-40B0-83F9-79CA6901B005}|Pagos.API.csproj|solutionrelative:controllers\\pagoscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    }
-  ],
+  "Documents": [],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -14,7 +9,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": -1,
           "Children": [
             {
               "$type": "Bookmark",
@@ -25,17 +20,8 @@
               "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
             },
             {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "PagosController.cs",
-              "DocumentMoniker": "C:\\Users\\anale\\OneDrive\\Documentos\\UCAB\\DESA 2\\Proyecto\\VivoPass\\PagoMs\\Pagos.API\\Controllers\\PagosController.cs",
-              "RelativeDocumentMoniker": "Controllers\\PagosController.cs",
-              "ToolTip": "C:\\Users\\anale\\OneDrive\\Documentos\\UCAB\\DESA 2\\Proyecto\\VivoPass\\PagoMs\\Pagos.API\\Controllers\\PagosController.cs",
-              "RelativeToolTip": "Controllers\\PagosController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAjAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-25T01:13:22.633Z",
-              "EditorCaption": ""
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{da1e233c-cfa8-5021-b06c-abc3d02f44e8}"
             }
           ]
         }
