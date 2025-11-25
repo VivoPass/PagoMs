@@ -16,7 +16,7 @@ namespace Pagos.Infrastructure.Configurations
 
                 if (string.IsNullOrWhiteSpace(connectionUri))
                 {
-                    throw new ConexionBdMPagoInvalida();
+                    throw new ConexionBdInvalida();
                 }
 
                 var settings = MongoClientSettings.FromConnectionString(connectionUri);
@@ -24,7 +24,7 @@ namespace Pagos.Infrastructure.Configurations
 
                 client = new MongoClient(settings);
 
-                string databaseName = Environment.GetEnvironmentVariable("MONGODB_NAME");
+                string databaseName = Environment.GetEnvironmentVariable("MONGODB_NAME_PAGOS");
                 if (string.IsNullOrWhiteSpace(databaseName))
                 {
                     throw new NombreBdInvalido();

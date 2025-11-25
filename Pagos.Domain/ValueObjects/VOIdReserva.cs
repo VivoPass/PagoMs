@@ -13,10 +13,10 @@ namespace Pagos.Domain.ValueObjects
         public VOIdReserva(string valor)
         {
             if (string.IsNullOrWhiteSpace(valor))
-                throw new IdAuctionInvalido();
+                throw new IdReservaNullException();
 
             if (!Guid.TryParse(valor, out _))
-                throw new IdAuctionInvalido();
+                throw new IdReservaInvalidoException();
 
             Valor = valor;
         }

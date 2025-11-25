@@ -70,3 +70,4 @@ C:\Users\anale\OneDrive\Documentos\UCAB\DESA 2\Proyecto\VivoPass\PagoMs\Pagos.AP
 C:\Users\anale\OneDrive\Documentos\UCAB\DESA 2\Proyecto\VivoPass\PagoMs\Pagos.API\obj\Debug\net8.0\ref\Pagos.API.dll
 C:\Users\anale\OneDrive\Documentos\UCAB\DESA 2\Proyecto\VivoPass\PagoMs\Pagos.API\bin\Debug\net8.0\Pagos.API.xml
 C:\Users\anale\OneDrive\Documentos\UCAB\DESA 2\Proyecto\VivoPass\PagoMs\Pagos.API\obj\Debug\net8.0\Pagos.API.xml
+C:\Users\anale\OneDrive\Documentos\UCAB\DESA 2\Proyecto\VivoPass\PagoMs\Pagos.API\bin\Debug\net8.0\RestSharp.dll
