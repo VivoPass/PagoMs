@@ -9,10 +9,12 @@ namespace Pagos.Domain.Aggregates
         public VOIdExternalPago? IdExternalPago { get; private set; }
         public VOIdUsuario IdUsuario { get; private set; }
         public VOIdReserva IdReserva { get; private set; }
+        public VOIdEvento IdEvento { get; private set; }
         public VOFechaPago FechaPago { get; private set; }
         public VOMonto Monto { get; private set; }
 
-        public Pago(VOIdPago idPago, VOIdMPago idMPago, VOIdUsuario idUsuario, VOFechaPago fechaPago, VOMonto monto, VOIdReserva idReserva, VOIdExternalPago? idExternalPago)
+        public Pago(VOIdPago idPago, VOIdMPago idMPago, VOIdUsuario idUsuario, VOFechaPago fechaPago, VOMonto monto, 
+            VOIdReserva idReserva, VOIdEvento idEvento, VOIdExternalPago? idExternalPago)
         {
             IdPago = idPago;
             IdMPago = idMPago;
@@ -20,6 +22,7 @@ namespace Pagos.Domain.Aggregates
             FechaPago = fechaPago;
             Monto = monto;
             IdReserva = idReserva;
+            IdEvento = idEvento;
             IdExternalPago = idExternalPago;
         }
     }

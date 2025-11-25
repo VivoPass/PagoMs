@@ -13,10 +13,10 @@ namespace Pagos.Domain.ValueObjects
         public VOIdPago(string valor)
         {
             if (string.IsNullOrWhiteSpace(valor))
-                throw new IdPagoInvalido();
+                throw new IdPagoNullException();
 
             if (!Guid.TryParse(valor, out _))
-                throw new IdPagoInvalido();
+                throw new IdPagoInvalidoException();
 
             Valor = valor;
         }

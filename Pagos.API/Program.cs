@@ -13,9 +13,11 @@ using Pagos.Application.Validations;
 using Pagos.Domain.Factories;
 using Pagos.Domain.Interfaces;
 using Pagos.Infrastructure.Configurations;
+using Pagos.Infrastructure.Interfaces;
 using Pagos.Infrastructure.Persistences.Repositories.MongoDB;
 using Pagos.Infrastructure.Queries.QueryHandlers;
 using Pagos.Infrastructure.Services;
+using RestSharp;
 using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -49,9 +51,13 @@ builder.Services.AddSwaggerGen(options =>
 
 // Registrar configuración de MongoDB
 builder.Services.AddSingleton<PagoDbConfig>();
+builder.Services.AddSingleton<AuditoriaDbConfig>();
+builder.Services.AddSingleton<IRestClient>(new RestClient());
 
 // REGISTRA EL REPOSITORIO ANTES DE MediatR
 builder.Services.AddScoped<IMPagoRepository, MPagoRepository>();
+builder.Services.AddScoped<IPagoRepository, PagoRepository>();
+builder.Services.AddScoped<IAuditoriaRepository, AuditoriaRepository>();
 builder.Services.AddScoped<IStripeService, StripeService>();
 builder.Services.AddScoped<ITarjetaCreditoFactory, TarjetaCreditoFactory>();
 builder.Services.AddScoped<IPagoFactory, PagoFactory>();
@@ -61,12 +67,20 @@ builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(Agreg
 builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(EliminarMPagoCommandHandler).Assembly));
 builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(MPagoPredeterminadoCommandHandler).Assembly));
 
+builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(AgregarPagoCommandHandler).Assembly));
+
 builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(GetTodosMPagoQueryHandler).Assembly));
 builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(GetMPagoPorIdQueryHandler).Assembly));
 builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(GetMPagoPorIdUsuarioQueryHandler).Assembly));
 
+builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(GetPagoPorIdQueryHandler).Assembly));
+builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(GetPagosByIdEventoQueryHandler).Assembly));
+builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(GetPagosByIdUsuarioQueryHandler).Assembly));
+
 builder.Services.AddValidatorsFromAssemblyContaining<AgregarMPagoDTOValidator>();
 builder.Services.AddValidatorsFromAssemblyContaining<MPagoDTOValidator>();
+builder.Services.AddValidatorsFromAssemblyContaining<AgregarPagoDTOValidator>();
+builder.Services.AddValidatorsFromAssemblyContaining<PagoDTOValidator>();
 builder.Services.AddFluentValidationAutoValidation();
 
 builder.Services.AddMassTransit(busConfigurator =>

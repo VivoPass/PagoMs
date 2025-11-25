@@ -69,6 +69,10 @@
             "Stripe.net": {
               "target": "Package",
               "version": "[49.2.0, )"
+            },
+            "log4net": {
+              "target": "Package",
+              "version": "[3.2.0, )"
             }
           },
           "imports": [
@@ -226,6 +230,10 @@
             "Stripe.net": {
               "target": "Package",
               "version": "[49.2.0, )"
+            },
+            "log4net": {
+              "target": "Package",
+              "version": "[3.2.0, )"
             }
           },
           "imports": [

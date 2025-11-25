@@ -72,6 +72,10 @@
               "target": "Package",
               "version": "[8.5.5, )"
             },
+            "RestSharp": {
+              "target": "Package",
+              "version": "[112.1.0, )"
+            },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
               "version": "[6.6.2, )"
@@ -173,6 +177,10 @@
             "Stripe.net": {
               "target": "Package",
               "version": "[49.2.0, )"
+            },
+            "log4net": {
+              "target": "Package",
+              "version": "[3.2.0, )"
             }
           },
           "imports": [
@@ -330,6 +338,10 @@
             "Stripe.net": {
               "target": "Package",
               "version": "[49.2.0, )"
+            },
+            "log4net": {
+              "target": "Package",
+              "version": "[3.2.0, )"
             }
           },
           "imports": [
