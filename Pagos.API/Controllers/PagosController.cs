@@ -89,7 +89,12 @@ namespace Pagos.API.Controllers
             catch (Exception ex)
             {
                 Log.Error($"[500] Error al intentar agregar MPago para el usuario {mpago.IdUsuario}.", ex);
-                return StatusCode(500, ex);
+                return StatusCode(500, new
+                {
+                    Error = "InternalServerError",
+                    Message = ex.Message,
+                    Inner = ex.InnerException?.Message
+                });
             }
         }
         #endregion
@@ -112,6 +117,7 @@ namespace Pagos.API.Controllers
         [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(string))] // Error de comunicación externa o genérico
         public async Task<IActionResult> EliminarMPago([FromQuery] string idMPago)
         {
+            var MPago = await Mediator.Send(new GetMPagoPorIdQuery(idMPago));
             Log.Debug($"Inicio de Eliminación de MPago: {idMPago}");
             try
             {
@@ -123,7 +129,6 @@ namespace Pagos.API.Controllers
                 }
 
                 //Conexion con el MS de Usuarios para la publicacion de la actividad
-                var MPago = await Mediator.Send(new GetMPagoPorIdQuery(idMPago));
                 Log.Debug($"[MS-USUARIOS] Preparando publicación de actividad para usuario: {MPago.IdUsuario} (MPago: {MPago.IdMPago}).");
                 var requestUsuario = new RestRequest(Environment.GetEnvironmentVariable("USUARIOS_MS_URL") +
                                                      $"/publishActivity", Method.Post);
@@ -150,7 +155,12 @@ namespace Pagos.API.Controllers
             catch (Exception ex)
             {
                 Log.Error($"[500] Error al intentar eliminar MPago con ID {idMPago}.", ex);
-                return StatusCode(500, ex);
+                return StatusCode(500, new
+                {
+                    Error = "InternalServerError",
+                    Message = ex.Message,
+                    Inner = ex.InnerException?.Message
+                });
             }
         }
         #endregion

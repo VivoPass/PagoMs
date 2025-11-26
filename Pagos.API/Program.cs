@@ -19,6 +19,7 @@ using Pagos.Infrastructure.Queries.QueryHandlers;
 using Pagos.Infrastructure.Services;
 using RestSharp;
 using System.Reflection;
+using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
