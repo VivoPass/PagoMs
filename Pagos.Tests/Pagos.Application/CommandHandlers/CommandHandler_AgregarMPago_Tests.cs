@@ -5,9 +5,11 @@ using Pagos.Application.Commands.CommandHandlers;
 using Pagos.Application.DTOs;
 using Pagos.Application.Interfaces;
 using Pagos.Domain.Entities;
+using Pagos.Domain.Exceptions;
 using Pagos.Domain.Interfaces;
 using Pagos.Domain.ValueObjects;
 using Stripe;
+using System.Reflection.Metadata;
 
 namespace Pagos.Tests.Pagos.Application.CommandHandlers
 {
@@ -117,5 +119,98 @@ namespace Pagos.Tests.Pagos.Application.CommandHandlers
         }
         #endregion
 
+
+        // ------------------------------------------------------
+        // 1) IdMPagoStripe nulo/vacío → IdMPagoStripeNullCommandHandlerException
+        // ------------------------------------------------------
+
+        [Theory]
+        [InlineData(null)]
+        [InlineData("")]
+        [InlineData("   ")]
+        public async Task Handle_DeberiaLanzarIdMPagoStripeNullCommandHandlerException_CuandoIdMPagoStripeEsNuloOVacio(string idMPagoStripe)
+        {
+            // Arrange
+            var dto = new AgregarMPagoStripeDTO
+            {
+                IdUsuario = "user-1",
+                IdMPagoStripe = idMPagoStripe,
+                CorreoUsuario = "user@test.com"
+            };
+
+            var command = new AgregarMPagoCommand(dto);
+
+            // Act + Assert
+            await Assert.ThrowsAsync<IdMPagoStripeNullCommandHandlerException>(() =>
+                Handler.Handle(command, CancellationToken.None));
+
+            // No debe tocar Stripe ni el repositorio
+            MockStripeService.Verify(s => s.CrearTokenCUS(It.IsAny<string>(), It.IsAny<string>()), Times.Never);
+            MockRepo.Verify(r => r.AgregarMPago(It.IsAny<TarjetaCredito>()), Times.Never);
+        }
+
+        // ------------------------------------------------------
+        // 2) StripeService lanza StripeException → AgregarMPagoCommandHandlerException
+        // ------------------------------------------------------
+
+        [Fact]
+        public async Task Handle_DeberiaLanzarAgregarMPagoCommandHandlerException_CuandoStripeLanzaStripeException()
+        {
+            // Arrange
+            var dto = new AgregarMPagoStripeDTO
+            {
+                IdUsuario = "user-1",
+                IdMPagoStripe = "pm_123",
+                CorreoUsuario = "user@test.com"
+            };
+
+            var command = new AgregarMPagoCommand(dto);
+
+            var stripeEx = new StripeException("Error de Stripe");
+
+            MockStripeService
+                .Setup(s => s.CrearTokenCUS(dto.CorreoUsuario, dto.IdMPagoStripe))
+                .ThrowsAsync(stripeEx);
+
+            // Act + Assert
+            var ex = await Assert.ThrowsAsync<AgregarMPagoCommandHandlerException>(() =>
+                Handler.Handle(command, CancellationToken.None));
+
+            Assert.Equal("Error de Stripe", ex.InnerException?.Message);
+
+            MockStripeService.Verify(s => s.CrearTokenCUS(dto.CorreoUsuario, dto.IdMPagoStripe), Times.Once);
+            MockRepo.Verify(r => r.AgregarMPago(It.IsAny<TarjetaCredito>()), Times.Never);
+        }
+
+        // ------------------------------------------------------
+        // 3) StripeService lanza Exception genérica → AgregarMPagoCommandHandlerException
+        // ------------------------------------------------------
+
+        [Fact]
+        public async Task Handle_DeberiaLanzarAgregarMPagoCommandHandlerException_CuandoStripeLanzaExceptionGenerica()
+        {
+            // Arrange
+            var dto = new AgregarMPagoStripeDTO
+            {
+                IdUsuario = "user-1",
+                IdMPagoStripe = "pm_123",
+                CorreoUsuario = "user@test.com"
+            };
+
+            var command = new AgregarMPagoCommand(dto);
+
+            MockStripeService
+                .Setup(s => s.CrearTokenCUS(dto.CorreoUsuario, dto.IdMPagoStripe))
+                .ThrowsAsync(new Exception("Error genérico"));
+
+            // Act + Assert
+            var ex = await Assert.ThrowsAsync<AgregarMPagoCommandHandlerException>(() =>
+                Handler.Handle(command, CancellationToken.None));
+
+            Assert.Equal("Error genérico", ex.InnerException?.Message);
+
+            MockStripeService.Verify(s => s.CrearTokenCUS(dto.CorreoUsuario, dto.IdMPagoStripe), Times.Once);
+            MockRepo.Verify(r => r.AgregarMPago(It.IsAny<TarjetaCredito>()), Times.Never);
+        }
     }
 }
