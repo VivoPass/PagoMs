@@ -1,0 +1,132 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Pagos.API</name>
+    </assembly>
+    <members>
+        <member name="T:Pagos.API.Controllers.PagosController">
+            <summary>
+            Controlador principal para la gestión de medios de pago y transacciones.
+            </summary>
+        </member>
+        <member name="M:Pagos.API.Controllers.PagosController.AgregarMPago(Pagos.Application.DTOs.AgregarMPagoStripeDTO)">
+            <summary>
+            Agrega un nuevo método de pago usando Stripe.
+            </summary>
+            <param name="mpago">
+            DTO <see cref="T:Pagos.Application.DTOs.AgregarMPagoStripeDTO"/> con la información requerida por Stripe
+            para asociar un nuevo método de pago al usuario.
+            </param>
+            <returns>
+            <see cref="T:Microsoft.AspNetCore.Mvc.CreatedAtActionResult"/> (201) con el ID del nuevo método de pago si la operación es exitosa;
+            <see cref="T:Microsoft.AspNetCore.Mvc.BadRequestObjectResult"/> (400) si no se pudo crear el recurso;
+            <see cref="T:Microsoft.AspNetCore.Mvc.ObjectResult"/> (500) si ocurre un error interno.
+            </returns>
+        </member>
+        <member name="M:Pagos.API.Controllers.PagosController.EliminarMPago(System.String)">
+            <summary>
+            Elimina un medio de pago (MPago) identificado por su ID.
+            </summary>
+            <param name="idMPago">
+            Identificador único del medio de pago que se desea eliminar.
+            </param>
+            <returns>
+            <see cref="T:Microsoft.AspNetCore.Mvc.OkObjectResult"/> (200) con mensaje de éxito si la eliminación fue exitosa;  
+            <see cref="T:Microsoft.AspNetCore.Mvc.NotFoundObjectResult"/> (404) si no se pudo eliminar porque no se encontró el MPago;  
+            <see cref="T:Microsoft.AspNetCore.Mvc.ObjectResult"/> (500) si ocurre un error interno en el servidor.
+            </returns>
+        </member>
+        <member name="M:Pagos.API.Controllers.PagosController.GetMPagoPorId(System.String)">
+            <summary>
+            Recupera un medio de pago (MPago) por su identificador único.
+            </summary>
+            <param name="idMPago">Identificador del medio de pago a consultar.</param>
+            <returns>
+            <see cref="T:Microsoft.AspNetCore.Mvc.OkObjectResult"/> (200) con el documento MPago si existe;
+            <see cref="T:Microsoft.AspNetCore.Mvc.NotFoundObjectResult"/> (404) si no se encuentra un MPago con ese ID;
+            <see cref="T:Microsoft.AspNetCore.Mvc.ObjectResult"/> (500) si ocurre un error interno en el servidor.
+            </returns>
+        </member>
+        <member name="M:Pagos.API.Controllers.PagosController.GetMPagoPorIdUsuario(System.String)">
+            <summary>
+            Recupera todos los medios de pago (MPago) asociados a un usuario específico.
+            </summary>
+            <param name="idUsuario">Identificador del usuario cuyos MPagos se quieren listar.</param>
+            <returns>
+            <see cref="T:Microsoft.AspNetCore.Mvc.OkObjectResult"/> (200) con la lista de MPagos si existen;
+            <see cref="T:Microsoft.AspNetCore.Mvc.NotFoundObjectResult"/> (404) si no se encuentra ningún MPago para ese postor;
+            <see cref="T:Microsoft.AspNetCore.Mvc.ObjectResult"/> (500) si ocurre un error interno en el servidor.
+            </returns>
+        </member>
+        <member name="M:Pagos.API.Controllers.PagosController.GetTodosMPago">
+            <summary>
+            Recupera todos los medios de pago (MPago) registrados. (Ruta administrativa/debugging).
+            </summary>
+            <returns>
+            <see cref="T:Microsoft.AspNetCore.Mvc.OkObjectResult"/> (200) con la lista de todos los MPagos;
+            <see cref="T:Microsoft.AspNetCore.Mvc.NotFoundObjectResult"/> (404) si no existe ningún MPago registrado;
+            <see cref="T:Microsoft.AspNetCore.Mvc.ObjectResult"/> (500) si ocurre un error interno en el servidor.
+            </returns>
+        </member>
+        <member name="M:Pagos.API.Controllers.PagosController.ActualizarMPagoPredeterminado(System.String,System.String)">
+            <summary>
+            Marca un medio de pago (MPago) como predeterminado para un usuario específico.
+            </summary>
+            <param name="idMPago">
+            Identificador del medio de pago que se desea establecer como predeterminado.
+            </param>
+            <param name="idUsuario">
+            Identificador del usuario al que pertenece el medio de pago.
+            </param>
+            <returns>
+            <see cref="T:Microsoft.AspNetCore.Mvc.OkObjectResult"/> (200) con mensaje de confirmación si la operación fue exitosa;
+            <see cref="T:Microsoft.AspNetCore.Mvc.NotFoundObjectResult"/> (404) si no se pudo actualizar el MPago a predeterminado;
+            <see cref="T:Microsoft.AspNetCore.Mvc.ObjectResult"/> (500) si ocurre un error interno en el servidor.
+            </returns>
+        </member>
+        <member name="M:Pagos.API.Controllers.PagosController.AgregarPago(Pagos.Application.DTOs.AgregarPagoDTO,System.String)">
+            <summary>
+            Procesa una solicitud de pago y confirma la reserva asociada en el Microservicio de Reservas.
+            </summary>
+            <param name="pago">DTO con los detalles del pago (Monto, ID Reserva, etc.).</param>
+            <param name="idMPago">ID del medio de pago a utilizar.</param>
+            <returns>
+            <see cref="T:Microsoft.AspNetCore.Mvc.CreatedAtActionResult"/> (201) si el pago y la confirmación de reserva son exitosos;
+            <see cref="T:Microsoft.AspNetCore.Mvc.BadRequestObjectResult"/> (400) si el pago no se pudo crear;
+            <see cref="T:Microsoft.AspNetCore.Mvc.ObjectResult"/> (500) si el pago es exitoso pero falla la confirmación de la reserva o si ocurre un error interno.
+            </returns>
+        </member>
+        <member name="M:Pagos.API.Controllers.PagosController.GetPagoPorId(System.String)">
+            <summary>
+            Obtiene los detalles de un pago específico por su ID.
+            </summary>
+            <param name="idPago">Identificador del pago a consultar.</param>
+            <returns>
+            <see cref="T:Microsoft.AspNetCore.Mvc.OkObjectResult"/> (200) con el documento Pago si existe;
+            <see cref="T:Microsoft.AspNetCore.Mvc.NotFoundObjectResult"/> (404) si no se encuentra el pago;
+            <see cref="T:Microsoft.AspNetCore.Mvc.ObjectResult"/> (500) si ocurre un error interno en el servidor.
+            </returns>
+        </member>
+        <member name="M:Pagos.API.Controllers.PagosController.GetPagoPorIdEvento(System.String)">
+            <summary>
+            Obtiene todos los pagos asociados a un evento específico.
+            </summary>
+            <param name="idEvento">Identificador del evento a consultar.</param>
+            <returns>
+            <see cref="T:Microsoft.AspNetCore.Mvc.OkObjectResult"/> (200) con la lista de pagos si existen;
+            <see cref="T:Microsoft.AspNetCore.Mvc.NotFoundObjectResult"/> (404) si no se encontraron pagos para el evento;
+            <see cref="T:Microsoft.AspNetCore.Mvc.ObjectResult"/> (500) si ocurre un error interno en el servidor.
+            </returns>
+        </member>
+        <member name="M:Pagos.API.Controllers.PagosController.GetPagosPorIdUsuario(System.String)">
+            <summary>
+            Obtiene todos los pagos realizados por un usuario específico.
+            </summary>
+            <param name="idUsuario">Identificador del usuario cuyos pagos se quieren listar.</param>
+            <returns>
+            <see cref="T:Microsoft.AspNetCore.Mvc.OkObjectResult"/> (200) con la lista de pagos del usuario (puede ser una lista vacía);
+            <see cref="T:Microsoft.AspNetCore.Mvc.ObjectResult"/> (500) si ocurre un error interno en el servidor.
+            </returns>
+        </member>
+    </members>
+</doc>

@@ -71,7 +71,7 @@ namespace Pagos.Infrastructure.Services
             try
             {
                 // buscar si este metodo de pago ya tiene asociado un cliente
-                var paymentMethodService = new PaymentMethodService();
+                var paymentMethodService = new Stripe.PaymentMethodService();
 
                 Log.Debug($"Buscando PaymentMethod existente: {paymentMethodId}.");
                 var existingPaymentMethod = await paymentMethodService.GetAsync(paymentMethodId);
