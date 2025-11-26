@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\anale\\OneDrive\\Documentos\\UCAB\\DESA 2\\Proyecto\\VivoPass\\PagoMs\\Pagos.Tests\\Pagos.Tests.csproj": {}
+    "C:\\Users\\ejic2\\OneDrive\\Escritorio\\API prueba\\PagosEventos\\PagoMs\\Pagos.Tests\\Pagos.Tests.csproj": {}
   },
   "projects": {
-    "C:\\Users\\anale\\OneDrive\\Documentos\\UCAB\\DESA 2\\Proyecto\\VivoPass\\PagoMs\\Pagos.API\\Pagos.API.csproj": {
+    "C:\\Users\\ejic2\\OneDrive\\Escritorio\\API prueba\\PagosEventos\\PagoMs\\Pagos.API\\Pagos.API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\anale\\OneDrive\\Documentos\\UCAB\\DESA 2\\Proyecto\\VivoPass\\PagoMs\\Pagos.API\\Pagos.API.csproj",
+        "projectUniqueName": "C:\\Users\\ejic2\\OneDrive\\Escritorio\\API prueba\\PagosEventos\\PagoMs\\Pagos.API\\Pagos.API.csproj",
         "projectName": "Pagos.API",
-        "projectPath": "C:\\Users\\anale\\OneDrive\\Documentos\\UCAB\\DESA 2\\Proyecto\\VivoPass\\PagoMs\\Pagos.API\\Pagos.API.csproj",
-        "packagesPath": "C:\\Users\\anale\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\anale\\OneDrive\\Documentos\\UCAB\\DESA 2\\Proyecto\\VivoPass\\PagoMs\\Pagos.API\\obj\\",
+        "projectPath": "C:\\Users\\ejic2\\OneDrive\\Escritorio\\API prueba\\PagosEventos\\PagoMs\\Pagos.API\\Pagos.API.csproj",
+        "packagesPath": "C:\\Users\\ejic2\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\ejic2\\OneDrive\\Escritorio\\API prueba\\PagosEventos\\PagoMs\\Pagos.API\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\anale\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\ejic2\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -32,14 +32,14 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\anale\\OneDrive\\Documentos\\UCAB\\DESA 2\\Proyecto\\VivoPass\\PagoMs\\Pagos.Application\\Pagos.Application.csproj": {
-                "projectPath": "C:\\Users\\anale\\OneDrive\\Documentos\\UCAB\\DESA 2\\Proyecto\\VivoPass\\PagoMs\\Pagos.Application\\Pagos.Application.csproj"
+              "C:\\Users\\ejic2\\OneDrive\\Escritorio\\API prueba\\PagosEventos\\PagoMs\\Pagos.Application\\Pagos.Application.csproj": {
+                "projectPath": "C:\\Users\\ejic2\\OneDrive\\Escritorio\\API prueba\\PagosEventos\\PagoMs\\Pagos.Application\\Pagos.Application.csproj"
               },
-              "C:\\Users\\anale\\OneDrive\\Documentos\\UCAB\\DESA 2\\Proyecto\\VivoPass\\PagoMs\\Pagos.Domain\\Pagos.Domain.csproj": {
-                "projectPath": "C:\\Users\\anale\\OneDrive\\Documentos\\UCAB\\DESA 2\\Proyecto\\VivoPass\\PagoMs\\Pagos.Domain\\Pagos.Domain.csproj"
+              "C:\\Users\\ejic2\\OneDrive\\Escritorio\\API prueba\\PagosEventos\\PagoMs\\Pagos.Domain\\Pagos.Domain.csproj": {
+                "projectPath": "C:\\Users\\ejic2\\OneDrive\\Escritorio\\API prueba\\PagosEventos\\PagoMs\\Pagos.Domain\\Pagos.Domain.csproj"
               },
-              "C:\\Users\\anale\\OneDrive\\Documentos\\UCAB\\DESA 2\\Proyecto\\VivoPass\\PagoMs\\Pagos.Infrastructure\\Pagos.Infrastructure.csproj": {
-                "projectPath": "C:\\Users\\anale\\OneDrive\\Documentos\\UCAB\\DESA 2\\Proyecto\\VivoPass\\PagoMs\\Pagos.Infrastructure\\Pagos.Infrastructure.csproj"
+              "C:\\Users\\ejic2\\OneDrive\\Escritorio\\API prueba\\PagosEventos\\PagoMs\\Pagos.Infrastructure\\Pagos.Infrastructure.csproj": {
+                "projectPath": "C:\\Users\\ejic2\\OneDrive\\Escritorio\\API prueba\\PagosEventos\\PagoMs\\Pagos.Infrastructure\\Pagos.Infrastructure.csproj"
               }
             }
           }
@@ -54,7 +54,7 @@
           "auditLevel": "low",
           "auditMode": "direct"
         },
-        "SdkAnalysisLevel": "9.0.300"
+        "SdkAnalysisLevel": "9.0.200"
       },
       "frameworks": {
         "net8.0": {
@@ -108,24 +108,24 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.305/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.201/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\anale\\OneDrive\\Documentos\\UCAB\\DESA 2\\Proyecto\\VivoPass\\PagoMs\\Pagos.Application\\Pagos.Application.csproj": {
+    "C:\\Users\\ejic2\\OneDrive\\Escritorio\\API prueba\\PagosEventos\\PagoMs\\Pagos.Application\\Pagos.Application.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\anale\\OneDrive\\Documentos\\UCAB\\DESA 2\\Proyecto\\VivoPass\\PagoMs\\Pagos.Application\\Pagos.Application.csproj",
+        "projectUniqueName": "C:\\Users\\ejic2\\OneDrive\\Escritorio\\API prueba\\PagosEventos\\PagoMs\\Pagos.Application\\Pagos.Application.csproj",
         "projectName": "Pagos.Application",
-        "projectPath": "C:\\Users\\anale\\OneDrive\\Documentos\\UCAB\\DESA 2\\Proyecto\\VivoPass\\PagoMs\\Pagos.Application\\Pagos.Application.csproj",
-        "packagesPath": "C:\\Users\\anale\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\anale\\OneDrive\\Documentos\\UCAB\\DESA 2\\Proyecto\\VivoPass\\PagoMs\\Pagos.Application\\obj\\",
+        "projectPath": "C:\\Users\\ejic2\\OneDrive\\Escritorio\\API prueba\\PagosEventos\\PagoMs\\Pagos.Application\\Pagos.Application.csproj",
+        "packagesPath": "C:\\Users\\ejic2\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\ejic2\\OneDrive\\Escritorio\\API prueba\\PagosEventos\\PagoMs\\Pagos.Application\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\anale\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\ejic2\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -140,8 +140,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\anale\\OneDrive\\Documentos\\UCAB\\DESA 2\\Proyecto\\VivoPass\\PagoMs\\Pagos.Domain\\Pagos.Domain.csproj": {
-                "projectPath": "C:\\Users\\anale\\OneDrive\\Documentos\\UCAB\\DESA 2\\Proyecto\\VivoPass\\PagoMs\\Pagos.Domain\\Pagos.Domain.csproj"
+              "C:\\Users\\ejic2\\OneDrive\\Escritorio\\API prueba\\PagosEventos\\PagoMs\\Pagos.Domain\\Pagos.Domain.csproj": {
+                "projectPath": "C:\\Users\\ejic2\\OneDrive\\Escritorio\\API prueba\\PagosEventos\\PagoMs\\Pagos.Domain\\Pagos.Domain.csproj"
               }
             }
           }
@@ -156,7 +156,7 @@
           "auditLevel": "low",
           "auditMode": "direct"
         },
-        "SdkAnalysisLevel": "9.0.300"
+        "SdkAnalysisLevel": "9.0.200"
       },
       "frameworks": {
         "net8.0": {
@@ -199,24 +199,24 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.305/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.201/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\anale\\OneDrive\\Documentos\\UCAB\\DESA 2\\Proyecto\\VivoPass\\PagoMs\\Pagos.Domain\\Pagos.Domain.csproj": {
+    "C:\\Users\\ejic2\\OneDrive\\Escritorio\\API prueba\\PagosEventos\\PagoMs\\Pagos.Domain\\Pagos.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\anale\\OneDrive\\Documentos\\UCAB\\DESA 2\\Proyecto\\VivoPass\\PagoMs\\Pagos.Domain\\Pagos.Domain.csproj",
+        "projectUniqueName": "C:\\Users\\ejic2\\OneDrive\\Escritorio\\API prueba\\PagosEventos\\PagoMs\\Pagos.Domain\\Pagos.Domain.csproj",
         "projectName": "Pagos.Domain",
-        "projectPath": "C:\\Users\\anale\\OneDrive\\Documentos\\UCAB\\DESA 2\\Proyecto\\VivoPass\\PagoMs\\Pagos.Domain\\Pagos.Domain.csproj",
-        "packagesPath": "C:\\Users\\anale\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\anale\\OneDrive\\Documentos\\UCAB\\DESA 2\\Proyecto\\VivoPass\\PagoMs\\Pagos.Domain\\obj\\",
+        "projectPath": "C:\\Users\\ejic2\\OneDrive\\Escritorio\\API prueba\\PagosEventos\\PagoMs\\Pagos.Domain\\Pagos.Domain.csproj",
+        "packagesPath": "C:\\Users\\ejic2\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\ejic2\\OneDrive\\Escritorio\\API prueba\\PagosEventos\\PagoMs\\Pagos.Domain\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\anale\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\ejic2\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -243,7 +243,7 @@
           "auditLevel": "low",
           "auditMode": "direct"
         },
-        "SdkAnalysisLevel": "9.0.300"
+        "SdkAnalysisLevel": "9.0.200"
       },
       "frameworks": {
         "net8.0": {
@@ -274,24 +274,24 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.305/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.201/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\anale\\OneDrive\\Documentos\\UCAB\\DESA 2\\Proyecto\\VivoPass\\PagoMs\\Pagos.Infrastructure\\Pagos.Infrastructure.csproj": {
+    "C:\\Users\\ejic2\\OneDrive\\Escritorio\\API prueba\\PagosEventos\\PagoMs\\Pagos.Infrastructure\\Pagos.Infrastructure.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\anale\\OneDrive\\Documentos\\UCAB\\DESA 2\\Proyecto\\VivoPass\\PagoMs\\Pagos.Infrastructure\\Pagos.Infrastructure.csproj",
+        "projectUniqueName": "C:\\Users\\ejic2\\OneDrive\\Escritorio\\API prueba\\PagosEventos\\PagoMs\\Pagos.Infrastructure\\Pagos.Infrastructure.csproj",
         "projectName": "Pagos.Infrastructure",
-        "projectPath": "C:\\Users\\anale\\OneDrive\\Documentos\\UCAB\\DESA 2\\Proyecto\\VivoPass\\PagoMs\\Pagos.Infrastructure\\Pagos.Infrastructure.csproj",
-        "packagesPath": "C:\\Users\\anale\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\anale\\OneDrive\\Documentos\\UCAB\\DESA 2\\Proyecto\\VivoPass\\PagoMs\\Pagos.Infrastructure\\obj\\",
+        "projectPath": "C:\\Users\\ejic2\\OneDrive\\Escritorio\\API prueba\\PagosEventos\\PagoMs\\Pagos.Infrastructure\\Pagos.Infrastructure.csproj",
+        "packagesPath": "C:\\Users\\ejic2\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\ejic2\\OneDrive\\Escritorio\\API prueba\\PagosEventos\\PagoMs\\Pagos.Infrastructure\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\anale\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\ejic2\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -306,11 +306,11 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\anale\\OneDrive\\Documentos\\UCAB\\DESA 2\\Proyecto\\VivoPass\\PagoMs\\Pagos.Application\\Pagos.Application.csproj": {
-                "projectPath": "C:\\Users\\anale\\OneDrive\\Documentos\\UCAB\\DESA 2\\Proyecto\\VivoPass\\PagoMs\\Pagos.Application\\Pagos.Application.csproj"
+              "C:\\Users\\ejic2\\OneDrive\\Escritorio\\API prueba\\PagosEventos\\PagoMs\\Pagos.Application\\Pagos.Application.csproj": {
+                "projectPath": "C:\\Users\\ejic2\\OneDrive\\Escritorio\\API prueba\\PagosEventos\\PagoMs\\Pagos.Application\\Pagos.Application.csproj"
               },
-              "C:\\Users\\anale\\OneDrive\\Documentos\\UCAB\\DESA 2\\Proyecto\\VivoPass\\PagoMs\\Pagos.Domain\\Pagos.Domain.csproj": {
-                "projectPath": "C:\\Users\\anale\\OneDrive\\Documentos\\UCAB\\DESA 2\\Proyecto\\VivoPass\\PagoMs\\Pagos.Domain\\Pagos.Domain.csproj"
+              "C:\\Users\\ejic2\\OneDrive\\Escritorio\\API prueba\\PagosEventos\\PagoMs\\Pagos.Domain\\Pagos.Domain.csproj": {
+                "projectPath": "C:\\Users\\ejic2\\OneDrive\\Escritorio\\API prueba\\PagosEventos\\PagoMs\\Pagos.Domain\\Pagos.Domain.csproj"
               }
             }
           }
@@ -325,7 +325,7 @@
           "auditLevel": "low",
           "auditMode": "direct"
         },
-        "SdkAnalysisLevel": "9.0.300"
+        "SdkAnalysisLevel": "9.0.200"
       },
       "frameworks": {
         "net8.0": {
@@ -360,24 +360,24 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.305/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.201/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\anale\\OneDrive\\Documentos\\UCAB\\DESA 2\\Proyecto\\VivoPass\\PagoMs\\Pagos.Tests\\Pagos.Tests.csproj": {
+    "C:\\Users\\ejic2\\OneDrive\\Escritorio\\API prueba\\PagosEventos\\PagoMs\\Pagos.Tests\\Pagos.Tests.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\anale\\OneDrive\\Documentos\\UCAB\\DESA 2\\Proyecto\\VivoPass\\PagoMs\\Pagos.Tests\\Pagos.Tests.csproj",
+        "projectUniqueName": "C:\\Users\\ejic2\\OneDrive\\Escritorio\\API prueba\\PagosEventos\\PagoMs\\Pagos.Tests\\Pagos.Tests.csproj",
         "projectName": "Pagos.Tests",
-        "projectPath": "C:\\Users\\anale\\OneDrive\\Documentos\\UCAB\\DESA 2\\Proyecto\\VivoPass\\PagoMs\\Pagos.Tests\\Pagos.Tests.csproj",
-        "packagesPath": "C:\\Users\\anale\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\anale\\OneDrive\\Documentos\\UCAB\\DESA 2\\Proyecto\\VivoPass\\PagoMs\\Pagos.Tests\\obj\\",
+        "projectPath": "C:\\Users\\ejic2\\OneDrive\\Escritorio\\API prueba\\PagosEventos\\PagoMs\\Pagos.Tests\\Pagos.Tests.csproj",
+        "packagesPath": "C:\\Users\\ejic2\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\ejic2\\OneDrive\\Escritorio\\API prueba\\PagosEventos\\PagoMs\\Pagos.Tests\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\anale\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\ejic2\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -392,17 +392,17 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\anale\\OneDrive\\Documentos\\UCAB\\DESA 2\\Proyecto\\VivoPass\\PagoMs\\Pagos.API\\Pagos.API.csproj": {
-                "projectPath": "C:\\Users\\anale\\OneDrive\\Documentos\\UCAB\\DESA 2\\Proyecto\\VivoPass\\PagoMs\\Pagos.API\\Pagos.API.csproj"
+              "C:\\Users\\ejic2\\OneDrive\\Escritorio\\API prueba\\PagosEventos\\PagoMs\\Pagos.API\\Pagos.API.csproj": {
+                "projectPath": "C:\\Users\\ejic2\\OneDrive\\Escritorio\\API prueba\\PagosEventos\\PagoMs\\Pagos.API\\Pagos.API.csproj"
               },
-              "C:\\Users\\anale\\OneDrive\\Documentos\\UCAB\\DESA 2\\Proyecto\\VivoPass\\PagoMs\\Pagos.Application\\Pagos.Application.csproj": {
-                "projectPath": "C:\\Users\\anale\\OneDrive\\Documentos\\UCAB\\DESA 2\\Proyecto\\VivoPass\\PagoMs\\Pagos.Application\\Pagos.Application.csproj"
+              "C:\\Users\\ejic2\\OneDrive\\Escritorio\\API prueba\\PagosEventos\\PagoMs\\Pagos.Application\\Pagos.Application.csproj": {
+                "projectPath": "C:\\Users\\ejic2\\OneDrive\\Escritorio\\API prueba\\PagosEventos\\PagoMs\\Pagos.Application\\Pagos.Application.csproj"
               },
-              "C:\\Users\\anale\\OneDrive\\Documentos\\UCAB\\DESA 2\\Proyecto\\VivoPass\\PagoMs\\Pagos.Domain\\Pagos.Domain.csproj": {
-                "projectPath": "C:\\Users\\anale\\OneDrive\\Documentos\\UCAB\\DESA 2\\Proyecto\\VivoPass\\PagoMs\\Pagos.Domain\\Pagos.Domain.csproj"
+              "C:\\Users\\ejic2\\OneDrive\\Escritorio\\API prueba\\PagosEventos\\PagoMs\\Pagos.Domain\\Pagos.Domain.csproj": {
+                "projectPath": "C:\\Users\\ejic2\\OneDrive\\Escritorio\\API prueba\\PagosEventos\\PagoMs\\Pagos.Domain\\Pagos.Domain.csproj"
               },
-              "C:\\Users\\anale\\OneDrive\\Documentos\\UCAB\\DESA 2\\Proyecto\\VivoPass\\PagoMs\\Pagos.Infrastructure\\Pagos.Infrastructure.csproj": {
-                "projectPath": "C:\\Users\\anale\\OneDrive\\Documentos\\UCAB\\DESA 2\\Proyecto\\VivoPass\\PagoMs\\Pagos.Infrastructure\\Pagos.Infrastructure.csproj"
+              "C:\\Users\\ejic2\\OneDrive\\Escritorio\\API prueba\\PagosEventos\\PagoMs\\Pagos.Infrastructure\\Pagos.Infrastructure.csproj": {
+                "projectPath": "C:\\Users\\ejic2\\OneDrive\\Escritorio\\API prueba\\PagosEventos\\PagoMs\\Pagos.Infrastructure\\Pagos.Infrastructure.csproj"
               }
             }
           }
@@ -417,7 +417,7 @@
           "auditLevel": "low",
           "auditMode": "direct"
         },
-        "SdkAnalysisLevel": "9.0.300"
+        "SdkAnalysisLevel": "9.0.200"
       },
       "frameworks": {
         "net8.0": {
@@ -460,7 +460,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.305/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.201/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
