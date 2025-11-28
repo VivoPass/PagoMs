@@ -49,10 +49,6 @@ namespace Pagos.Tests.Pagos.Infrastructure.Persistences.Repositories.MongoDB
             Repository = new AuditoriaRepository(mongoConfig, MockLogger.Object);
         }
 
-        // ===========================
-        //   InsertarAuditoriaPago
-        // ===========================
-
         #region InsertarAuditoriaPago_InvocacionExitosa_DebeInsertarDocumento()
         [Fact]
         public async Task InsertarAuditoriaPago_InvocacionExitosa_DebeInsertarDocumento()
@@ -122,9 +118,6 @@ namespace Pagos.Tests.Pagos.Infrastructure.Persistences.Repositories.MongoDB
         }
         #endregion
 
-        // ===========================
-        //   InsertarAuditoriaMPago
-        // ===========================
 
         #region InsertarAuditoriaMPago_InvocacionExitosa_DebeInsertarDocumento()
         [Fact]
