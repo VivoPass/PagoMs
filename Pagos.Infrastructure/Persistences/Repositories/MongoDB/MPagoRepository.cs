@@ -143,18 +143,18 @@ namespace Pagos.Infrastructure.Persistences.Repositories.MongoDB
             try
             {
                 var documento = new BsonDocument
-            {
-                { "_id", idMpago },
-                { "idUsuario", idUsuario },
-                { "idMPagoStripe", mPago.IdMPagoStripe.Valor },
-                { "idClienteStripe", mPago.IdClienteStripe.Valor },
-                { "marca", mPago.Marca.Valor },
-                { "mesExpiracion", mPago.MesExpiracion.Valor },
-                { "anioExpiracion", mPago.AnioExpiracion.Valor },
-                { "ultimos4", mPago.Ultimos4.Valor },
-                { "fechaRegistro", mPago.FechaRegistro.Valor.ToLocalTime() },
-                { "predeterminado", mPago.Predeterminado.Valor }
-            };
+                {
+                    { "_id", idMpago },
+                    { "idUsuario", idUsuario },
+                    { "idMPagoStripe", mPago.IdMPagoStripe.Valor },
+                    { "idClienteStripe", mPago.IdClienteStripe.Valor },
+                    { "marca", mPago.Marca.Valor },
+                    { "mesExpiracion", mPago.MesExpiracion.Valor },
+                    { "anioExpiracion", mPago.AnioExpiracion.Valor },
+                    { "ultimos4", mPago.Ultimos4.Valor },
+                    { "fechaRegistro", mPago.FechaRegistro.Valor.ToLocalTime() },
+                    { "predeterminado", mPago.Predeterminado.Valor }
+                };
                 await MPagoColexion.InsertOneAsync(documento);
                 Log.Info($"[CREATE SUCCESS] MPago {idMpago} agregado exitosamente. Insertando auditoría.");
 

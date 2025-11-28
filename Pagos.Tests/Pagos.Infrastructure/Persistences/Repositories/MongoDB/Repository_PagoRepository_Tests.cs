@@ -55,27 +55,22 @@ namespace Pagos.Tests.Pagos.Infrastructure.Persistences.Repositories.MongoDB
 
         public Repository_PagoRepository_Tests()
         {
-            // 1) Variables de entorno que usa PagoDbConfig
             Environment.SetEnvironmentVariable("MONGODB_CNN", "mongodb://localhost:27017");
             Environment.SetEnvironmentVariable("MONGODB_NAME_PAGOS", "test_database_pagos");
 
-            // 2) Mocks de Mongo y dependencias
             MockMongoDb = new Mock<IMongoDatabase>();
             MockPagoCollection = new Mock<IMongoCollection<BsonDocument>>();
             MockPagoFactory = new Mock<IPagoFactory>();
             MockAuditoria = new Mock<IAuditoriaRepository>();
             MockLogger = new Mock<ILog>();
 
-            // Cuando el config pida la colección "pagos", devolvemos la mock
             MockMongoDb
                 .Setup(d => d.GetCollection<BsonDocument>("pagos", It.IsAny<MongoCollectionSettings>()))
                 .Returns(MockPagoCollection.Object);
 
-            // 3) Crear config real pero sobreescribir la DB con el mock
             var mongoConfig = new PagoDbConfig();
             mongoConfig.db = MockMongoDb.Object;
 
-            // 4) Crear repo
             Repository = new PagoRepository(
                 mongoConfig,
                 MockPagoFactory.Object,
@@ -83,7 +78,7 @@ namespace Pagos.Tests.Pagos.Infrastructure.Persistences.Repositories.MongoDB
                 MockLogger.Object
             );
 
-            // 5) Datos de dominio de prueba
+            //Datos de dominio de prueba
             ExpectedPago = new Mock<Pago>(
                 new VOIdPago(TestPagoId),
                 new VOIdMPago(TestMPagoId),
@@ -131,9 +126,6 @@ namespace Pagos.Tests.Pagos.Infrastructure.Persistences.Repositories.MongoDB
             };
         }
 
-        // ===========================
-        //   AgregarPago
-        // ===========================
 
         #region AgregarPago_InvocacionExitosa_DebeInsertarEnMongoYRegistrarAuditoria()
         [Fact]
@@ -228,9 +220,6 @@ namespace Pagos.Tests.Pagos.Infrastructure.Persistences.Repositories.MongoDB
         }
         #endregion
 
-        // ===========================
-        //   ActualizarIdPagoExterno
-        // ===========================
 
         #region ActualizarIdPagoExterno_ActualizacionExitosa_DebeLlamarUpdateOneAsync()
         [Fact]
@@ -332,9 +321,6 @@ namespace Pagos.Tests.Pagos.Infrastructure.Persistences.Repositories.MongoDB
         }
         #endregion
 
-        // ===========================
-        //   ObtenerPagoPorIdPago
-        // ===========================
 
         #region ObtenerPagoPorIdPago_PagoEncontrado_DebeRetornarPago()
         [Fact]
@@ -447,9 +433,6 @@ namespace Pagos.Tests.Pagos.Infrastructure.Persistences.Repositories.MongoDB
         }
         #endregion
 
-        // ===========================
-        //   ObtenerPagosPorIdUsuario
-        // ===========================
 
         #region ObtenerPagosPorIdUsuario_ConResultados_DebeRetornarListaDePagos()
         [Fact]
@@ -553,9 +536,6 @@ namespace Pagos.Tests.Pagos.Infrastructure.Persistences.Repositories.MongoDB
         }
         #endregion
 
-        // ===========================
-        //   ObtenerPagosPorIdEvento
-        // ===========================
 
         #region ObtenerPagosPorIdEvento_ConResultados_DebeRetornarListaDePagos()
         [Fact]
@@ -656,6 +636,5 @@ namespace Pagos.Tests.Pagos.Infrastructure.Persistences.Repositories.MongoDB
             );
         }
         #endregion
-
     }
 }
