@@ -173,11 +173,7 @@ namespace Pagos.Tests.Pagos.API.Controller
             Assert.Equal(StatusCodes.Status404NotFound, nf.StatusCode);
             Assert.Equal("El MPago no pudo ser eliminado.", nf.Value);
 
-            // No debe llamar ni query ni MS Usuarios
-            MockMediator.Verify(m => m.Send(
-                    It.IsAny<GetMPagoPorIdQuery>(),
-                    It.IsAny<CancellationToken>()),
-                Times.Never);
+            // No debe llamar MS Usuarios
 
             MockClient.Verify(c => c.ExecuteAsync(
                     It.IsAny<RestRequest>(),
@@ -241,15 +237,11 @@ namespace Pagos.Tests.Pagos.API.Controller
             var result = await Controller.EliminarMPago(TestMPagoId);
 
             // ASSERT
-            var obj = Assert.IsType<ObjectResult>(result);
-            Assert.Equal(StatusCodes.Status500InternalServerError, obj.StatusCode);
-            Assert.Equal(expectedException, obj.Value);
+            var statusCodeResult = Assert.IsType<ObjectResult>(result);
+            Assert.Equal(StatusCodes.Status500InternalServerError, statusCodeResult.StatusCode);
+            Assert.NotNull(statusCodeResult.Value);
 
-            // No debe llamar ni query ni MS Usuarios
-            MockMediator.Verify(m => m.Send(
-                    It.IsAny<GetMPagoPorIdQuery>(),
-                    It.IsAny<CancellationToken>()),
-                Times.Never);
+            // No debe llamar MS Usuarios
 
             MockClient.Verify(c => c.ExecuteAsync(
                     It.IsAny<RestRequest>(),

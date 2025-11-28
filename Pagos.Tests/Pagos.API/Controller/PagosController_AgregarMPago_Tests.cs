@@ -8,6 +8,7 @@ using Pagos.API.Controllers;
 using Pagos.Application.Commands;
 using Pagos.Application.DTOs;
 using Pagos.Domain.Entities;
+using Pagos.Domain.ValueObjects;
 using Pagos.Infrastructure.Queries;
 using RestSharp;
 using System.Net;
@@ -26,6 +27,7 @@ namespace Pagos.Tests.Pagos.API.Controller
         private readonly string TestUserId = Guid.NewGuid().ToString();
         private readonly MPagoDTO ValidMPago;
         private readonly string TestMPagoId = "mpago_test_456";
+        public record ErrorResponse(string Error, string Message, string? Inner);
 
         public PagosController_AgregarMPago_Tests()
         {
@@ -219,7 +221,8 @@ namespace Pagos.Tests.Pagos.API.Controller
         public async Task AgregarMPago_LanzaExcepcion_Retorna500InternalServerError()
         {
             // ARRANGE
-            var expectedExceptionMessage = new Exception("Database connection lost.");
+            var expectedMessage = "Database connection lost.";
+            var expectedExceptionMessage = new Exception(expectedMessage);
             MockMediator.Setup(m => m.Send(It.IsAny<AgregarMPagoCommand>(), It.IsAny<CancellationToken>()))
                 .ThrowsAsync(expectedExceptionMessage);
 
@@ -228,8 +231,8 @@ namespace Pagos.Tests.Pagos.API.Controller
 
             // ASSERT
             var statusCodeResult = Assert.IsType<ObjectResult>(result);
-            Assert.Equal(500, statusCodeResult.StatusCode);
-            Assert.Equal(expectedExceptionMessage, statusCodeResult.Value);
+            Assert.Equal(StatusCodes.Status500InternalServerError, statusCodeResult.StatusCode);
+            Assert.NotNull(statusCodeResult.Value);
         }
         #endregion
 

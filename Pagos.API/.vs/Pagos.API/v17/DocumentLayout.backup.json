@@ -1,7 +1,11 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Users\\anale\\OneDrive\\Documentos\\UCAB\\DESA 2\\Proyecto\\VivoPass\\PagoMs\\Pagos.API\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{E38127EE-0867-4452-A2A5-B6EEEB0ECB60}|..\\Pagos.Tests\\Pagos.Tests.csproj|c:\\users\\anale\\onedrive\\documentos\\ucab\\desa 2\\proyecto\\vivopass\\pagoms\\pagos.tests\\pagos.infrastructure\\persistences\\repositories\\mongodb\\repository_mpagorepository_tests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -9,7 +13,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": -1,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Bookmark",
@@ -18,6 +22,19 @@
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Repository_MPagoRepository_Tests.cs",
+              "DocumentMoniker": "C:\\Users\\anale\\OneDrive\\Documentos\\UCAB\\DESA 2\\Proyecto\\VivoPass\\PagoMs\\Pagos.Tests\\Pagos.Infrastructure\\Persistences\\Repositories\\MongoDB\\Repository_MPagoRepository_Tests.cs",
+              "RelativeDocumentMoniker": "..\\Pagos.Tests\\Pagos.Infrastructure\\Persistences\\Repositories\\MongoDB\\Repository_MPagoRepository_Tests.cs",
+              "ToolTip": "C:\\Users\\anale\\OneDrive\\Documentos\\UCAB\\DESA 2\\Proyecto\\VivoPass\\PagoMs\\Pagos.Tests\\Pagos.Infrastructure\\Persistences\\Repositories\\MongoDB\\Repository_MPagoRepository_Tests.cs",
+              "RelativeToolTip": "..\\Pagos.Tests\\Pagos.Infrastructure\\Persistences\\Repositories\\MongoDB\\Repository_MPagoRepository_Tests.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-28T05:51:24.908Z",
+              "EditorCaption": ""
             }
           ]
         }
