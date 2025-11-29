@@ -354,7 +354,375 @@ namespace Pagos.Tests.Pagos.Infrastructure.Persistences.Repositories.MongoDB
         #endregion
 
 
-        #region etTodosMPago_Exito_RetornaListaMPagos()
+        #region ActualizarPredeterminadoTrueMPago_MPagoEncontrado_ActualizaYAudita()
+        [Fact]
+        public async Task ActualizarPredeterminadoTrueMPago_MPagoEncontrado_ActualizaYAudita()
+        {
+            //ARRANGE
+            var cursorMock = new Mock<IAsyncCursor<BsonDocument>>();
+            cursorMock.SetupSequence(c => c.MoveNextAsync(default))
+                .ReturnsAsync(true)
+                .ReturnsAsync(false);
+            cursorMock.Setup(c => c.Current).Returns(new List<BsonDocument> { TestBsonPago });
+
+            MockPagoCollection.Setup(c => c.FindAsync(
+                It.IsAny<FilterDefinition<BsonDocument>>(), It.IsAny<FindOptions<BsonDocument, BsonDocument>>(),
+                default)).ReturnsAsync(cursorMock.Object);
+
+            var mockUpdateResult = Mock.Of<UpdateResult>(r => r.ModifiedCount == 1);
+            UpdateDefinition<BsonDocument> capturedUpdate = null;
+
+            MockPagoCollection.Setup(c => c.UpdateOneAsync(
+                    It.IsAny<FilterDefinition<BsonDocument>>(),
+                    It.IsAny<UpdateDefinition<BsonDocument>>(),
+                    It.IsAny<UpdateOptions>(),
+                    It.IsAny<CancellationToken>()))
+                // Captura el argumento de actualización antes de devolver el mock result
+                .Callback<FilterDefinition<BsonDocument>, UpdateDefinition<BsonDocument>, UpdateOptions, CancellationToken>(
+                    (filter, update, options, token) => capturedUpdate = update)
+                .ReturnsAsync(mockUpdateResult);
+
+            MockAuditoria.Setup(a => a.InsertarAuditoriaMPago(
+                    It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>(),
+                    It.IsAny<string>(), It.IsAny<string>()))
+                .Returns(Task.CompletedTask);
+
+            // ACT
+            await Repository.ActualizarPredeterminadoTrueMPago(TestMPagoId);
+
+            // ASSERT
+            MockPagoCollection.Verify(c => c.UpdateOneAsync(
+                It.IsAny<FilterDefinition<BsonDocument>>(), It.IsAny<UpdateDefinition<BsonDocument>>(),
+                It.IsAny<UpdateOptions>(), It.IsAny<CancellationToken>()), Times.Once);
+
+            MockAuditoria.Verify(a => a.InsertarAuditoriaMPago(
+                It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>(),
+                It.IsAny<string>(), It.IsAny<string>()), Times.Once);
+        }
+        #endregion
+
+        #region ActualizarPredeterminadoTrueMPago_MPagoNoEncontrado_NoAudita()
+        [Fact]
+        public async Task ActualizarPredeterminadoTrueMPago_MPagoNoEncontrado_NoAudita()
+        {
+            // ARRANGE
+            var cursorMock = new Mock<IAsyncCursor<BsonDocument>>();
+            cursorMock.SetupSequence(c => c.MoveNextAsync(default))
+                .ReturnsAsync(false);
+            cursorMock.Setup(c => c.Current).Returns(new List<BsonDocument> { });
+
+            MockPagoCollection.Setup(c => c.FindAsync(
+                It.IsAny<FilterDefinition<BsonDocument>>(), It.IsAny<FindOptions<BsonDocument, BsonDocument>>(),
+                default)).ReturnsAsync(cursorMock.Object);
+
+            var mockUpdateResult = Mock.Of<UpdateResult>(r => r.ModifiedCount == 0);
+
+            MockPagoCollection.Setup(c => c.UpdateOneAsync(
+                    It.IsAny<FilterDefinition<BsonDocument>>(), It.IsAny<UpdateDefinition<BsonDocument>>(),
+                    It.IsAny<UpdateOptions>(), It.IsAny<CancellationToken>()))
+                .ReturnsAsync(mockUpdateResult);
+
+            // ACT
+            await Repository.ActualizarPredeterminadoTrueMPago(TestMPagoId);
+
+            // ASSERT
+            MockPagoCollection.Verify(c => c.UpdateOneAsync(
+                It.IsAny<FilterDefinition<BsonDocument>>(), It.IsAny<UpdateDefinition<BsonDocument>>(),
+                It.IsAny<UpdateOptions>(), It.IsAny<CancellationToken>()), Times.Once);
+
+            MockAuditoria.Verify(a => a.InsertarAuditoriaMPago(
+                It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>(),
+                It.IsAny<string>(), It.IsAny<string>()), Times.Never);
+        }
+        #endregion
+
+        #region ActualizarPredeterminadoTrueMPago_ErrorEnUpdate_LanzaExcepcionYNoAudita()
+        [Fact]
+        public async Task ActualizarPredeterminadoTrueMPago_ErrorEnUpdate_LanzaExcepcionYNoAudita()
+        {
+            // ARRANGE
+            var cursorMock = new Mock<IAsyncCursor<BsonDocument>>();
+            cursorMock.SetupSequence(c => c.MoveNextAsync(default)).ReturnsAsync(false);
+            MockPagoCollection.Setup(c => c.FindAsync(
+                    It.IsAny<FilterDefinition<BsonDocument>>(), It.IsAny<FindOptions<BsonDocument, BsonDocument>>(),
+                    default)).ReturnsAsync(cursorMock.Object);
+
+            var expectedException = new Exception("Simulated MongoDB update failure.");
+
+            MockPagoCollection.Setup(c => c.UpdateOneAsync(
+                    It.IsAny<FilterDefinition<BsonDocument>>(),
+                    It.IsAny<UpdateDefinition<BsonDocument>>(),
+                    It.IsAny<UpdateOptions>(),
+                    It.IsAny<CancellationToken>()))
+                .ThrowsAsync(expectedException);
+
+            MockAuditoria.Setup(a => a.InsertarAuditoriaMPago(
+                    It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>(),
+                    It.IsAny<string>(), It.IsAny<string>()))
+                .Returns(Task.CompletedTask);
+
+            // ACT & ASSERT
+            var ex = await Assert.ThrowsAsync<MPagoRepositoryException>(() => Repository.ActualizarPredeterminadoTrueMPago(TestMPagoId));
+
+            Assert.IsType<Exception>(ex.InnerException);
+
+            MockAuditoria.Verify(a => a.InsertarAuditoriaMPago(
+                It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>(),
+                It.IsAny<string>(), It.IsAny<string>()), Times.Never);
+        }
+        #endregion
+
+
+        #region ActualizarPredeterminadoTrueMPago_MPagoEncontrado_ActualizaYAudita()
+        [Fact]
+        public async Task ActualizarPredeterminadoFalseMPago_MPagoEncontrado_ActualizaYAudita()
+        {
+            // ARRANGE
+            var cursorMock = new Mock<IAsyncCursor<BsonDocument>>();
+            cursorMock.SetupSequence(c => c.MoveNextAsync(default))
+                .ReturnsAsync(true)
+                .ReturnsAsync(false);
+            cursorMock.Setup(c => c.Current).Returns(new List<BsonDocument> { TestBsonPago });
+
+            MockPagoCollection.Setup(c => c.FindAsync(
+                    It.IsAny<FilterDefinition<BsonDocument>>(), It.IsAny<FindOptions<BsonDocument, BsonDocument>>(),
+                    default)).ReturnsAsync(cursorMock.Object);
+
+            var mockUpdateResult = Mock.Of<UpdateResult>(r => r.ModifiedCount == 1);
+            UpdateDefinition<BsonDocument> capturedUpdate = null;
+
+            MockPagoCollection.Setup(c => c.UpdateOneAsync(
+                    It.IsAny<FilterDefinition<BsonDocument>>(),
+                    It.IsAny<UpdateDefinition<BsonDocument>>(),
+                    It.IsAny<UpdateOptions>(),
+                    It.IsAny<CancellationToken>()))
+                // Captura el argumento de actualización antes de devolver el mock result
+                .Callback<FilterDefinition<BsonDocument>, UpdateDefinition<BsonDocument>, UpdateOptions, CancellationToken>(
+                    (filter, update, options, token) => capturedUpdate = update)
+                .ReturnsAsync(mockUpdateResult);
+
+            MockAuditoria.Setup(a => a.InsertarAuditoriaMPago(
+                    It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>(),
+                    It.IsAny<string>(), It.IsAny<string>()))
+                .Returns(Task.CompletedTask);
+
+            // ACT
+            await Repository.ActualizarPredeterminadoFalseMPago(TestMPagoId);
+
+            // ASSERT
+            MockPagoCollection.Verify(c => c.UpdateOneAsync(
+                It.IsAny<FilterDefinition<BsonDocument>>(), It.IsAny<UpdateDefinition<BsonDocument>>(),
+                It.IsAny<UpdateOptions>(), It.IsAny<CancellationToken>()), Times.Once);
+
+            MockAuditoria.Verify(a => a.InsertarAuditoriaMPago(
+                It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>(),
+                It.IsAny<string>(), It.IsAny<string>()), Times.Once);
+        }
+        #endregion
+
+        #region ActualizarPredeterminadoFalseMPago_MPagoNoEncontrado_NoAudita()
+        [Fact]
+        public async Task ActualizarPredeterminadoFalseMPago_MPagoNoEncontrado_NoAudita()
+        {
+            // ARRANGE
+            var cursorMock = new Mock<IAsyncCursor<BsonDocument>>();
+            cursorMock.SetupSequence(c => c.MoveNextAsync(default))
+                .ReturnsAsync(false);
+            cursorMock.Setup(c => c.Current).Returns(new List<BsonDocument> { });
+
+            MockPagoCollection.Setup(c => c.FindAsync(
+                It.IsAny<FilterDefinition<BsonDocument>>(), It.IsAny<FindOptions<BsonDocument, BsonDocument>>(),
+                default)).ReturnsAsync(cursorMock.Object);
+
+            var mockUpdateResult = Mock.Of<UpdateResult>(r => r.ModifiedCount == 0);
+
+            MockPagoCollection.Setup(c => c.UpdateOneAsync(
+                    It.IsAny<FilterDefinition<BsonDocument>>(), It.IsAny<UpdateDefinition<BsonDocument>>(),
+                    It.IsAny<UpdateOptions>(), It.IsAny<CancellationToken>()))
+                .ReturnsAsync(mockUpdateResult);
+
+            // ACT
+            await Repository.ActualizarPredeterminadoFalseMPago(TestMPagoId);
+
+            // ASSERT
+            MockPagoCollection.Verify(c => c.UpdateOneAsync(
+                It.IsAny<FilterDefinition<BsonDocument>>(), It.IsAny<UpdateDefinition<BsonDocument>>(),
+                It.IsAny<UpdateOptions>(), It.IsAny<CancellationToken>()), Times.Once);
+
+            MockAuditoria.Verify(a => a.InsertarAuditoriaMPago(
+                It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>(),
+                It.IsAny<string>(), It.IsAny<string>()), Times.Never);
+        }
+        #endregion
+
+        #region ActualizarPredeterminadoFalseMPago_ErrorEnUpdate_LanzaExcepcionYNoAudita()
+        [Fact]
+        public async Task ActualizarPredeterminadoFalseMPago_ErrorEnUpdate_LanzaExcepcionYNoAudita()
+        {
+            // ARRANGE
+            var cursorMock = new Mock<IAsyncCursor<BsonDocument>>();
+            cursorMock.SetupSequence(c => c.MoveNextAsync(default)).ReturnsAsync(false);
+            MockPagoCollection.Setup(c => c.FindAsync(
+                    It.IsAny<FilterDefinition<BsonDocument>>(), It.IsAny<FindOptions<BsonDocument, BsonDocument>>(),
+                    default)).ReturnsAsync(cursorMock.Object);
+
+            var expectedException = new Exception("Simulated MongoDB update failure.");
+
+            MockPagoCollection.Setup(c => c.UpdateOneAsync(
+                    It.IsAny<FilterDefinition<BsonDocument>>(),
+                    It.IsAny<UpdateDefinition<BsonDocument>>(),
+                    It.IsAny<UpdateOptions>(),
+                    It.IsAny<CancellationToken>()))
+                .ThrowsAsync(expectedException);
+
+            MockAuditoria.Setup(a => a.InsertarAuditoriaMPago(
+                    It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>(),
+                    It.IsAny<string>(), It.IsAny<string>()))
+                .Returns(Task.CompletedTask);
+
+            // ACT & ASSERT
+            var ex = await Assert.ThrowsAsync<MPagoRepositoryException>(() => Repository.ActualizarPredeterminadoFalseMPago(TestMPagoId));
+
+            Assert.IsType<Exception>(ex.InnerException);
+
+            MockAuditoria.Verify(a => a.InsertarAuditoriaMPago(
+                It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>(),
+                It.IsAny<string>(), It.IsAny<string>()), Times.Never);
+        }
+        #endregion
+
+
+        #region EliminarMPago_EncontradoYEliminado_AuditaCorrectamente()
+        [Fact]
+        public async Task EliminarMPago_EncontradoYEliminado_AuditaCorrectamente()
+        {
+            // ARRANGE
+            var cursorMock = new Mock<IAsyncCursor<BsonDocument>>();
+            cursorMock.SetupSequence(c => c.MoveNextAsync(default))
+                .ReturnsAsync(true)
+                .ReturnsAsync(false);
+            cursorMock.Setup(c => c.Current).Returns(new List<BsonDocument> { TestBsonPago });
+
+            MockPagoCollection.Setup(c => c.FindAsync(
+                It.IsAny<FilterDefinition<BsonDocument>>(), It.IsAny<FindOptions<BsonDocument, BsonDocument>>(),
+                default)).ReturnsAsync(cursorMock.Object);
+
+            var mockDeleteResult = Mock.Of<DeleteResult>(r => r.DeletedCount == 1);
+            MockPagoCollection.Setup(c => c.DeleteOneAsync(
+                    It.IsAny<FilterDefinition<BsonDocument>>(),
+                    It.IsAny<CancellationToken>()))
+                .ReturnsAsync(mockDeleteResult);
+
+            // ACT
+            await Repository.EliminarMPago(TestMPagoId);
+
+            // ASSERT
+            MockPagoCollection.Verify(c => c.DeleteOneAsync(
+                It.IsAny<FilterDefinition<BsonDocument>>(), It.IsAny<CancellationToken>()), Times.Once);
+
+            MockAuditoria.Verify(a => a.InsertarAuditoriaMPago(
+                It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>(),
+                It.IsAny<string>(), It.IsAny<string>()), Times.Once);
+        }
+        #endregion
+
+        #region EliminarMPago_NoEncontradoEnFind_LanzaExcepcion()
+        [Fact]
+        public async Task EliminarMPago_NoEncontradoEnFind_LanzaExcepcion()
+        {
+            // ARRANGE
+            var cursorMock = new Mock<IAsyncCursor<BsonDocument>>();
+            cursorMock.SetupSequence(c => c.MoveNextAsync(default))
+                .ReturnsAsync(true)
+                .ReturnsAsync(false);
+            cursorMock.Setup(c => c.Current).Returns(new List<BsonDocument> { });
+
+            MockPagoCollection.Setup(c => c.FindAsync(
+                It.IsAny<FilterDefinition<BsonDocument>>(), It.IsAny<FindOptions<BsonDocument, BsonDocument>>(),
+                default)).ReturnsAsync(cursorMock.Object);
+
+            MockPagoCollection.Setup(c => c.DeleteOneAsync(
+                    It.IsAny<FilterDefinition<BsonDocument>>(),
+                    It.IsAny<CancellationToken>()))
+                .ReturnsAsync(Mock.Of<DeleteResult>(r => r.DeletedCount == 0));
+
+            // ACT & ASSERT
+            var ex = await Assert.ThrowsAsync<MPagoRepositoryException>(() => Repository.EliminarMPago(TestMPagoId));
+            Assert.IsType<NullReferenceException>(ex.InnerException);
+
+            MockAuditoria.Verify(a => a.InsertarAuditoriaMPago(
+                It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>(),
+                It.IsAny<string>(), It.IsAny<string>()), Times.Never);
+        }
+        #endregion
+
+        #region EliminarMPago_ErrorEnDeleteOne_LanzaExcepcionYNoAudita()
+        [Fact]
+        public async Task EliminarMPago_ErrorEnDeleteOne_LanzaExcepcionYNoAudita()
+        {
+            // ARRANGE
+            var cursorMock = new Mock<IAsyncCursor<BsonDocument>>();
+            cursorMock.SetupSequence(c => c.MoveNextAsync(default))
+                .ReturnsAsync(true)
+                .ReturnsAsync(false);
+            cursorMock.Setup(c => c.Current).Returns(new List<BsonDocument> { TestBsonPago });
+
+            MockPagoCollection.Setup(c => c.FindAsync(
+                It.IsAny<FilterDefinition<BsonDocument>>(), It.IsAny<FindOptions<BsonDocument, BsonDocument>>(),
+                default)).ReturnsAsync(cursorMock.Object);
+
+            var expectedException = new MongoException("Simulated MongoDB delete failure.");
+            MockPagoCollection.Setup(c => c.DeleteOneAsync(
+                    It.IsAny<FilterDefinition<BsonDocument>>(), It.IsAny<CancellationToken>()))
+                .ThrowsAsync(expectedException);
+
+            // ACT & ASSERT
+            var ex = await Assert.ThrowsAsync<MPagoRepositoryException>(() => Repository.EliminarMPago(TestMPagoId));
+            Assert.IsType<MongoException>(ex.InnerException);
+
+            MockAuditoria.Verify(a => a.InsertarAuditoriaMPago(
+                It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>(),
+                It.IsAny<string>(), It.IsAny<string>()), Times.Never);
+        }
+        #endregion
+
+        #region EliminarMPago_EncontradoPeroNoEliminado_NoAudita()
+        [Fact]
+        public async Task EliminarMPago_EncontradoPeroNoEliminado_NoAudita()
+        {
+            // ARRANGE
+            var cursorMock = new Mock<IAsyncCursor<BsonDocument>>();
+            cursorMock.SetupSequence(c => c.MoveNextAsync(default))
+                .ReturnsAsync(true)
+                .ReturnsAsync(false);
+            cursorMock.Setup(c => c.Current).Returns(new List<BsonDocument> { TestBsonPago });
+
+            MockPagoCollection.Setup(c => c.FindAsync(
+                It.IsAny<FilterDefinition<BsonDocument>>(), It.IsAny<FindOptions<BsonDocument, BsonDocument>>(),
+                default)).ReturnsAsync(cursorMock.Object);
+
+            var mockDeleteResult = Mock.Of<DeleteResult>(r => r.DeletedCount == 0);
+
+            MockPagoCollection.Setup(c => c.DeleteOneAsync(
+                    It.IsAny<FilterDefinition<BsonDocument>>(),
+                    It.IsAny<CancellationToken>()))
+                .ReturnsAsync(mockDeleteResult);
+
+            // ACT
+            await Repository.EliminarMPago(TestMPagoId);
+
+            // ASSERT
+            MockPagoCollection.Verify(c => c.DeleteOneAsync(
+                It.IsAny<FilterDefinition<BsonDocument>>(), It.IsAny<CancellationToken>()), Times.Once);
+
+            MockAuditoria.Verify(a => a.InsertarAuditoriaMPago(
+                It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>(),
+                It.IsAny<string>(), It.IsAny<string>()), Times.Never);
+        }
+        #endregion
+
+
+        #region GetTodosMPago_Exito_RetornaListaMPagos()
         [Fact]
         public async Task GetTodosMPago_Exito_RetornaListaMPagos()
         {
@@ -408,94 +776,35 @@ namespace Pagos.Tests.Pagos.Infrastructure.Persistences.Repositories.MongoDB
         }
         #endregion
 
-        #region GetTodosMPago_Fallo_ThrowsException()
+        #region GetTodosMPago_MapeoFallaPorBSONInvalido_RelanzaComoMPagoRepositoryException()
         [Fact]
-        public async Task GetTodosMPago_Fallo_ThrowsException()
+        public async Task GetTodosMPago_MapeoFallaPorBSONInvalido_RelanzaComoMPagoRepositoryException()
         {
             // ARRANGE
-            var mongoException = new MongoException("Error de conexión");
+            var invalidBsonDoc = new List<BsonDocument>
+            {
+                new BsonDocument
+                {
+                    { "_id", "id1" }, /* FALTA idUsuario */ { "idMPagoStripe", "mp_stripe1" },
+                    { "idClienteStripe", "cust_stripe1" }, { "marca", "Visa" }, { "mesExpiracion", 12 },
+                    { "anioExpiracion", 2025 }, { "ultimos4", "1234" },
+                    { "fechaRegistro", DateTime.Now.ToUniversalTime() }, { "predeterminado", true }
+                }
+            };
 
-            MockPagoFactory.SetupSequence(f => f.Load(
-                    It.IsAny<VOIdMPago>(), It.IsAny<VOIdUsuario>(), It.IsAny<VOIdMPagoStripe>(),
-                    It.IsAny<VOIdClienteStripe>(), It.IsAny<VOMarca>(), It.IsAny<VOMesExpiracion>(),
-                    It.IsAny<VOAnioExpiracion>(), It.IsAny<VOUltimos4>(), It.IsAny<VOFechaRegistro>(),
-                    It.IsAny<VOPredeterminado>()))
-                .Returns(ExpectedPago)
-                .Returns(ExpectedPago2);
-
+            var cursorMock = new Mock<IAsyncCursor<BsonDocument>>();
+            cursorMock.SetupSequence(c => c.MoveNextAsync(default))
+                .ReturnsAsync(true).ReturnsAsync(false);
+            cursorMock.Setup(c => c.Current).Returns(invalidBsonDoc);
             MockPagoCollection.Setup(c => c.FindAsync(
                     It.IsAny<FilterDefinition<BsonDocument>>(),
                     It.IsAny<FindOptions<BsonDocument, BsonDocument>>(),
                     default))
-                .ThrowsAsync(mongoException);
+                .ReturnsAsync(cursorMock.Object);
 
             // ACT & ASSERT
-            await Assert.ThrowsAsync<MPagoRepositoryException>(() => Repository.GetTodosMPago());
-        }
-        #endregion
-
-
-        #region ActualizarPredeterminadoTrueMPago_MPagoEncontrado_ActualizaYAudita()
-        [Fact]
-        public async Task ActualizarPredeterminadoTrueMPago_MPagoEncontrado_ActualizaYAudita()
-        {
-            // ARRANGE
-            var cursorMock = new Mock<IAsyncCursor<BsonDocument>>();
-            cursorMock.SetupSequence(c => c.MoveNextAsync(default))
-                .ReturnsAsync(false);
-            cursorMock.Setup(c => c.Current).Returns(new List<BsonDocument> { });
-
-            MockPagoCollection.Setup(c => c.FindAsync(
-                    It.IsAny<FilterDefinition<BsonDocument>>(), It.IsAny<FindOptions<BsonDocument, BsonDocument>>(),
-                    default)).ReturnsAsync(cursorMock.Object);
-
-            var mockUpdateResult = Mock.Of<UpdateResult>(r => r.ModifiedCount == 1);
-            UpdateDefinition<BsonDocument> capturedUpdate = null;
-
-            MockPagoCollection.Setup(c => c.UpdateOneAsync(
-                    It.IsAny<FilterDefinition<BsonDocument>>(),
-                    It.IsAny<UpdateDefinition<BsonDocument>>(),
-                    It.IsAny<UpdateOptions>(),
-                    It.IsAny<CancellationToken>()))
-                // Captura el argumento de actualización antes de devolver el mock result
-                .Callback<FilterDefinition<BsonDocument>, UpdateDefinition<BsonDocument>, UpdateOptions, CancellationToken>(
-                    (filter, update, options, token) => capturedUpdate = update)
-                .ReturnsAsync(mockUpdateResult);
-
-            MockAuditoria.Setup(a => a.InsertarAuditoriaMPago(
-                    It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>(),
-                    It.IsAny<string>(), It.IsAny<string>()))
-                .Returns(Task.CompletedTask);
-
-            // ACT
-            await Repository.ActualizarPredeterminadoTrueMPago(TestMPagoId);
-
-            // ASSERT
-            MockPagoCollection.Verify(c => c.UpdateOneAsync(
-                It.IsAny<FilterDefinition<BsonDocument>>(), It.IsAny<UpdateDefinition<BsonDocument>>(),
-                It.IsAny<UpdateOptions>(), It.IsAny<CancellationToken>()), Times.Once);
-        }
-        #endregion
-
-        #region ActualizarPredeterminadoTrueMPago_Error_LanzaExcepcion()
-        [Fact]
-        public async Task ActualizarPredeterminadoTrueMPago_Error_LanzaExcepcion()
-        {
-            // ARRANGE
-            var cursorMock = new Mock<IAsyncCursor<BsonDocument>>();
-            cursorMock.SetupSequence(c => c.MoveNextAsync(default))
-                .ReturnsAsync(false);
-            cursorMock.Setup(c => c.Current).Returns(new List<BsonDocument> { });
-
-            MockPagoCollection.Setup(c => c.FindAsync(
-                It.IsAny<FilterDefinition<BsonDocument>>(), It.IsAny<FindOptions<BsonDocument, BsonDocument>>(),
-                default)).ReturnsAsync(cursorMock.Object);
-
-            // ACT & ASSERT
-            await Assert.ThrowsAsync<MPagoRepositoryException>(() => Repository.ActualizarPredeterminadoTrueMPago(TestMPagoId));
-
-            MockAuditoria.Verify(a => a.InsertarAuditoriaMPago(
-                It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>()), Times.Never);
+            var ex = await Assert.ThrowsAsync<MPagoRepositoryException>(() => Repository.GetTodosMPago());
+            Assert.IsType<IdMPagoInvalidoException>(ex.InnerException);
         }
         #endregion
 
