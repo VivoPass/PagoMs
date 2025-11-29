@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Pagos.Infrastructure")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b36c6c78bd3b6f778eac588d67e73f8016e2a035")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+bd92ea233bab3f751500f240a4ffc28872162e1c")]
 [assembly: System.Reflection.AssemblyProductAttribute("Pagos.Infrastructure")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Pagos.Infrastructure")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
